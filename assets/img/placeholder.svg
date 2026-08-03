@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 800" role="img" aria-label="Placeholder portrait">
+  <rect width="640" height="800" fill="#F3EFE8"/>
+  <g fill="none" stroke="#D8CFC1" stroke-width="2">
+    <circle cx="320" cy="330" r="96"/>
+    <path d="M168 660c0-84 68-152 152-152s152 68 152 152"/>
+  </g>
+  <text x="320" y="742" text-anchor="middle"
+        font-family="Georgia, 'Times New Roman', serif" font-size="22" fill="#8A8377">
+    add assets/img/headshot.jpg
+  </text>
+</svg>
