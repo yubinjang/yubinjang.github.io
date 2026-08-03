@@ -176,7 +176,6 @@ a{ color:inherit; }
   margin:0 0 26px;
   text-wrap:balance;
 }
-.hero__title em{ color:var(--accent); font-style:italic; }
 
 .hero__role{
   font-family:var(--serif);
@@ -242,25 +241,6 @@ a{ color:inherit; }
   letter-spacing:-.012em;
   margin:0 0 22px;
 }
-.section__title em{ color:var(--accent); font-style:italic; }
-
-.section__num{
-  display:inline-block;
-  margin-right:.55em;
-  font-family:var(--sans);
-  font-size:.36em;
-  font-weight:500;
-  letter-spacing:.16em;
-  color:var(--muted);
-  vertical-align:.9em;
-}
-
-.section__intro{
-  max-width:62ch;
-  margin:0 0 clamp(36px, 5vw, 60px);
-  font-size:1.05rem;
-  color:var(--ink-soft);
-}
 
 /* two-column layout used by About / Awards / Service */
 .cols{
@@ -272,13 +252,6 @@ a{ color:inherit; }
 
 .prose p{ margin:0 0 1.15em; max-width:64ch; }
 .prose p:last-child{ margin-bottom:0; }
-.prose .lead{
-  font-family:var(--serif);
-  font-size:clamp(1.3rem, 2.2vw, 1.62rem);
-  line-height:1.42;
-  color:var(--ink);
-  margin-bottom:1.1em;
-}
 
 .cols__side{
   border-top:1px solid var(--rule);
@@ -339,11 +312,12 @@ a{ color:inherit; }
   padding-top:22px;
 }
 .strand__num{
-  font-family:var(--serif);
-  font-style:italic;
-  font-size:1.35rem;
-  color:var(--accent);
-  margin:0 0 8px;
+  font-size:.78rem;
+  font-weight:500;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin:0 0 10px;
 }
 .strand__title{
   font-family:var(--serif);
@@ -365,14 +339,6 @@ a{ color:inherit; }
   font-size:.9rem;
   color:var(--ink-soft);
   padding-block:5px;
-  padding-left:16px;
-  position:relative;
-}
-.strand__meta li::before{
-  content:"\2726";
-  position:absolute; left:0; top:2px;
-  color:var(--accent-lt);
-  font-size:.72em;
 }
 
 /* ---------------------------------------------------------- PUBLICATIONS */
@@ -556,7 +522,6 @@ a{ color:inherit; }
   line-height:1.06;
   margin:0 0 22px;
 }
-.contact__title em{ color:var(--accent); font-style:italic; }
 
 .contact__lede{
   max-width:58ch;
