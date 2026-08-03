@@ -38,35 +38,34 @@ training → 05 Awards and fellowships → 06 Service and professional leadershi
    stands in automatically if the file ever goes missing.
 2. **Fill in the LinkedIn URL.** `index.html` currently has a bare `https://www.linkedin.com/`
    in the contact list. Replace it or delete that `<li>`.
-3. **Replace the CV PDF.** `cv/Jang_Yubin_CV.pdf` is the 2026-07-22 export and it still says
-   EDUC 867. Export a fresh PDF from `Jang_CV.docx` (see below), save it over
-   `cv/Jang_Yubin_CV.pdf`, and the two links on the page pick it up with no edit to the HTML.
+3. ~~Replace the CV PDF.~~ Done 2026-08-03. `cv/Jang_Yubin_CV.pdf` is now the 2026-08-03 export
+   from `Jang_CV.docx` and says EDUC 816. To refresh it again, export from the docx and
+   overwrite this file. The two links on the page pick it up with no edit to the HTML.
 
 ## Deploying to GitHub Pages
 
-The site is already Pages-ready. The one wrinkle is that this folder sits inside Google Drive,
-and Drive's sync client and `git` both want to manage the same files. Cloning into a normal
-local folder avoids the fight.
+The Drive folder cannot be the git repo. Drive's sync client and `git` both want to manage the
+same files, and they corrupt each other's state. The shipping copy is a plain local clone at
+`~/Documents/yubinjang-site`, already initialized, committed, and pointed at the remote.
 
-```bash
-mkdir -p ~/Documents/yubinjang-site && cp -R "/Users/ybjang/Library/CloudStorage/GoogleDrive-ybjang@udel.edu/My Drive/LLM-EduWiki/website/." ~/Documents/yubinjang-site/
-```
+Remaining steps, in this order:
 
-Then, in `~/Documents/yubinjang-site`:
+1. Create an **empty** repo at [github.com/new](https://github.com/new) named exactly
+   `yubinjang.github.io`. The name must match the account name or GitHub serves it as a project
+   repo at a subpath instead of at the root. Set it **Public**, and leave README, `.gitignore`,
+   and license unchecked so nothing collides with the local history.
+2. Push:
+   ```bash
+   git -C ~/Documents/yubinjang-site push -u origin main
+   ```
+   Username `yubinjang`, password is a personal access token with write access to contents. The
+   system git config already enables the macOS keychain helper, so it is only asked once.
+3. Settings → Pages → Source "Deploy from a branch" → `main`, folder `/ (root)` → Save.
 
-```bash
-git init -b main && git add -A && git commit -m "Personal academic website"
-```
+Live at **https://yubinjang.github.io** a minute or two later.
 
-Create an empty repo on GitHub named `ybjang.github.io` (the name matters, it gives you
-`https://ybjang.github.io` with no subpath), then:
-
-```bash
-git remote add origin https://github.com/ybjang/ybjang.github.io.git && git push -u origin main
-```
-
-In the repo on GitHub, go to Settings → Pages, set Source to "Deploy from a branch", branch
-`main`, folder `/ (root)`. The site is live in a minute or two.
+To publish later edits, copy them from Drive into the clone with the `rsync` line at the bottom
+of this file, then commit and push.
 
 To use a custom domain such as `yubinjang.com`, buy the domain, add a file named `CNAME`
 containing just the domain, and point the DNS A records at GitHub's Pages IPs per their docs.
