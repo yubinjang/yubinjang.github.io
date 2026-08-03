@@ -1,11 +1,19 @@
 ---
 title: "Personal Academic Website"
 updated: 2026-08-03
-source_of_truth: "this folder (index.html + assets/). CV PDF is a copy, see below."
+live_url: https://yubinjang.github.io
+repo: https://github.com/yubinjang/yubinjang.github.io
+shipping_copy: "~/Documents/yubinjang-site (git clone). This Drive folder is the drafting copy."
 model: https://akhurana.com
 ---
 
 # Personal academic website
+
+**Live at [yubinjang.github.io](https://yubinjang.github.io)** since 2026-08-03.
+
+> ⚠️ **Two copies exist.** This Drive folder is where edits get made. The git clone at
+> `~/Documents/yubinjang-site` is what actually ships. Editing here alone changes nothing on the
+> live site. Sync, commit, and push — see [Publishing an update](#publishing-an-update).
 
 Single-page scrolling site modeled on [akhurana.com](https://akhurana.com), built from
 `Jang_Yubin_CV.pdf` (2026-07-22). Plain HTML, CSS, and vanilla JavaScript. No build step, no
@@ -64,8 +72,24 @@ Remaining steps, in this order:
 
 Live at **https://yubinjang.github.io** a minute or two later.
 
-To publish later edits, copy them from Drive into the clone with the `rsync` line at the bottom
-of this file, then commit and push.
+## Publishing an update
+
+Edits made in this Drive folder do not reach the live site on their own. Three steps, and the
+first one is the one that gets forgotten.
+
+```bash
+rsync -a --delete --exclude '.git' --exclude '.gitignore' --exclude '.DS_Store' "/Users/ybjang/Library/CloudStorage/GoogleDrive-ybjang@udel.edu/My Drive/LLM-EduWiki/website/" ~/Documents/yubinjang-site/
+```
+
+```bash
+git -C ~/Documents/yubinjang-site add -A && git -C ~/Documents/yubinjang-site commit -m "Describe the change"
+```
+
+```bash
+git -C ~/Documents/yubinjang-site push
+```
+
+Live again in about a minute. The push token is in the macOS keychain, so no prompt.
 
 To use a custom domain such as `yubinjang.com`, buy the domain, add a file named `CNAME`
 containing just the domain, and point the DNS A records at GitHub's Pages IPs per their docs.
