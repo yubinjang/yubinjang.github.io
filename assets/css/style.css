@@ -178,6 +178,14 @@ a{ color:inherit; }
 }
 .hero__title em{ color:var(--accent); font-style:italic; }
 
+.hero__role{
+  font-family:var(--serif);
+  font-size:clamp(1.12rem, 1.7vw, 1.4rem);
+  line-height:1.42;
+  color:var(--ink-soft);
+  margin:0 0 20px;
+}
+
 .hero__lede{
   margin:0 0 34px;
   max-width:52ch;
@@ -351,10 +359,12 @@ a{ color:inherit; }
   border-top:1px solid var(--rule);
   padding-top:14px;
 }
+/* these bullets now carry the strand on their own, so they read a step up
+   from the incidental-metadata size they had under a paragraph */
 .strand__meta li{
-  font-size:.83rem;
-  color:var(--muted);
-  padding-block:3px;
+  font-size:.9rem;
+  color:var(--ink-soft);
+  padding-block:5px;
   padding-left:16px;
   position:relative;
 }
