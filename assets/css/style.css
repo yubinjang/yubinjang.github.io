@@ -275,6 +275,9 @@ a{ color:inherit; }
   padding-top:26px;
 }
 
+/* two lists of equal standing, rather than a main column and a sidebar */
+.cols--even{ grid-template-columns:repeat(2, minmax(0,1fr)); }
+
 .side__head,
 .list__head{
   font-size:.74rem;
@@ -285,6 +288,8 @@ a{ color:inherit; }
   margin:0 0 14px;
 }
 .side__head:not(:first-child){ margin-top:30px; }
+
+.list__head--accent{ color:var(--accent); }
 
 .side__note{
   margin:0 0 .7em;
