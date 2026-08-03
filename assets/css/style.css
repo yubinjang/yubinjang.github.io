@@ -4,14 +4,16 @@
    ============================================================ */
 
 :root{
-  --bg:        #FCFAF7;
-  --bg-alt:    #F3EFE8;
-  --ink:       #1B1A17;
-  --ink-soft:  #45413A;
-  --muted:     #8A8377;
-  --rule:      #E2DACE;
-  --accent:    #9C4A24;
-  --accent-lt: #C6764C;
+  --bg:        #FBFAF6;
+  --bg-alt:    #EFEEE6;
+  --ink:       #191C18;
+  --ink-soft:  #3F4740;
+  /* dark enough to clear WCAG AA on --bg-alt. `muted` is not purely decorative,
+     it carries role titles and funding amounts in the honors lists. */
+  --muted:     #696C64;
+  --rule:      #DFE0D5;
+  --accent:    #2F5741;
+  --accent-lt: #5C8770;
 
   --serif: "Spectral", Georgia, "Times New Roman", serif;
   --sans:  "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
