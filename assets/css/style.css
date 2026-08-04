@@ -461,9 +461,11 @@ a{ color:inherit; }
 
 .cards{
   display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(288px, 1fr));
+  /* four cards, deliberately 2 x 2 rather than a reflowing auto-fit row */
+  grid-template-columns:repeat(2, minmax(0, 1fr));
   gap:clamp(20px, 2.6vw, 30px);
 }
+@media (max-width:680px){ .cards{ grid-template-columns:1fr; } }
 .card{
   background:var(--bg);
   border:1px solid var(--rule);
@@ -501,7 +503,6 @@ a{ color:inherit; }
   padding-block:15px;
   border-bottom:1px solid var(--rule);
 }
-.honors--compact li{ padding-block:12px; font-size:.93rem; }
 .honors li:last-child{ border-bottom:0; }
 
 .honors__year{
