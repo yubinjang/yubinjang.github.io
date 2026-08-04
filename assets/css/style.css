@@ -274,6 +274,18 @@ a{ color:inherit; }
 /* two lists of equal standing, rather than a main column and a sidebar */
 .cols--even{ grid-template-columns:repeat(2, minmax(0,1fr)); }
 
+/* the three reference blocks under About. They were cramped in the narrow
+   sidebar, so they run full width in their own row instead. */
+.factbar{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+  gap:clamp(26px, 3.5vw, 52px);
+  margin-top:clamp(40px, 5vw, 68px);
+  padding-top:28px;
+  border-top:1px solid var(--rule);
+}
+.factbar > div > .side__head{ margin-top:0; }
+
 .side__head,
 .list__head{
   font-size:.74rem;
@@ -595,6 +607,47 @@ a{ color:inherit; }
   text-decoration:none;
 }
 .foot__top:hover{ color:var(--accent); }
+
+/* ---------------------------------------------------------- HOVER HIGHLIGHT
+
+   Rows light up under the cursor so a long publication or awards list is easier
+   to track across its year column. Scoped to `hover:hover` because on a
+   touchscreen the highlight would stick after a tap with nothing to dismiss it. */
+
+@media (hover:hover){
+  .pub,
+  .honors li,
+  .timeline li{
+    /* pulled out by the same amount it pads, so the tint extends past the text
+       without shifting anything */
+    padding-inline:12px;
+    margin-inline:-12px;
+    border-radius:5px;
+    transition:background-color .18s ease;
+  }
+  .pub:hover,
+  .honors li:hover,
+  .timeline li:hover{
+    background:color-mix(in srgb, var(--accent) 7%, transparent);
+  }
+  .pub:hover .pub__year,
+  .honors li:hover .honors__year,
+  .timeline li:hover .timeline__when{ color:var(--accent); }
+
+  .strand{ transition:border-top-color .2s ease; }
+  .strand:hover{ border-top-color:var(--accent); }
+  .strand:hover .strand__num{ color:var(--accent); }
+
+  .card{ transition:border-color .2s ease, transform .2s ease, box-shadow .2s ease; }
+  .card:hover{
+    border-color:var(--accent-lt);
+    transform:translateY(-2px);
+    box-shadow:0 6px 22px color-mix(in srgb, var(--ink) 7%, transparent);
+  }
+
+  .strand__meta li{ transition:color .18s ease; }
+  .strand__meta li:hover{ color:var(--ink); }
+}
 
 /* ---------------------------------------------------------- REVEAL */
 
