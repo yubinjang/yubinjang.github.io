@@ -719,7 +719,7 @@ a{ color:inherit; }
      independently in the single-column flow */
   .hero__side{ display:contents; }
   .hero__portrait{ order:-1; max-width:290px; justify-self:start; min-height:0; }
-  .hero__portrait img{ height:auto; aspect-ratio:4/5; object-position:50% 50%; }
+  .hero__portrait img{ height:auto; aspect-ratio:7/10; object-position:50% 50%; }
   .hero__actions{ order:1; margin-top:8px; }
   .cols{ grid-template-columns:1fr; }
   .cols__side{ border-top:1px solid var(--rule); padding-top:26px; }
