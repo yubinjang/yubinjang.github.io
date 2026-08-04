@@ -462,6 +462,32 @@ a{ color:inherit; }
 }
 .pub__link:hover{ border-bottom-color:var(--accent); }
 
+/* long lists collapse to their most recent entries. The button stays hidden
+   until JS collapses the list, so without JS everything shows and there is no
+   dead control on the page. */
+.pub.is-hidden{ display:none; }
+
+.more{
+  display:none;
+  font-family:var(--sans);
+  font-size:.82rem;
+  letter-spacing:.02em;
+  color:var(--ink-soft);
+  background:none;
+  border:1px solid var(--rule);
+  border-radius:999px;
+  padding:8px 18px;
+  margin-top:16px;
+  cursor:pointer;
+  transition:color .18s ease, border-color .18s ease, background-color .18s ease;
+}
+.more.is-ready{ display:inline-block; }
+.more:hover{
+  color:var(--accent);
+  border-color:var(--accent);
+  background:color-mix(in srgb, var(--accent) 6%, transparent);
+}
+
 .pub__tag{
   display:inline-block;
   margin-top:6px;

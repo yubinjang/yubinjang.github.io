@@ -92,6 +92,32 @@
     reveals.forEach(function (el) { io.observe(el); });
   }
 
+  /* ---------- collapse long lists ----------
+     Everything stays in the DOM. Only the display is trimmed, so the full list
+     is still there for search engines and for anyone without JS. */
+  Array.prototype.slice.call(document.querySelectorAll('ol[data-collapse]')).forEach(function (list) {
+    var keep = parseInt(list.getAttribute('data-collapse'), 10) || 6;
+    var items = Array.prototype.slice.call(list.querySelectorAll('.pub'));
+    var btn = document.getElementById(list.id + 'More') ||
+              (list.nextElementSibling && list.nextElementSibling.classList.contains('more')
+                ? list.nextElementSibling : null);
+    if (!btn || items.length <= keep) return;
+
+    var extra = items.slice(keep);
+    function render(open) {
+      extra.forEach(function (el) { el.classList.toggle('is-hidden', !open); });
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.textContent = open ? 'Show fewer' : 'Show all ' + items.length;
+    }
+    render(false);
+    btn.classList.add('is-ready');
+    btn.addEventListener('click', function () {
+      var open = btn.getAttribute('aria-expanded') === 'true';
+      render(!open);
+      if (open) list.scrollIntoView({ block: 'nearest' });
+    });
+  });
+
   /* ---------- publication tabs ---------- */
   var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
 
