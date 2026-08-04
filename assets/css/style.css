@@ -166,8 +166,14 @@ a{ color:inherit; }
   display:grid;
   grid-template-columns:minmax(0,1.35fr) minmax(0,.85fr);
   gap:clamp(32px, 6vw, 76px);
-  align-items:center;
+  /* top-aligned so the portrait and the name start on the same line rather than
+     the photo floating in the middle of the text block */
+  align-items:start;
 }
+
+/* every line in the hero wraps to the same measure, so the block reads as one
+   rectangle instead of three differently-shaped paragraphs */
+.hero__text{ max-width:52ch; }
 
 .hero__title{
   font-family:var(--serif);
@@ -191,7 +197,6 @@ a{ color:inherit; }
 
 .hero__lede{
   margin:0 0 34px;
-  max-width:52ch;
   font-size:1.06rem;
   color:var(--ink-soft);
 }
@@ -212,7 +217,7 @@ a{ color:inherit; }
 .btn--ghost{ border:1px solid var(--rule); color:var(--ink); }
 .btn--ghost:hover{ border-color:var(--accent); color:var(--accent); transform:translateY(-1px); }
 
-.hero__portrait{ margin:0; max-width:400px; justify-self:end; width:100%; }
+.hero__portrait{ margin:6px 0 0; max-width:400px; justify-self:end; width:100%; }
 .hero__portrait img{
   width:100%;
   /* height:auto is required. The width/height attributes on the <img> set a
@@ -316,15 +321,15 @@ a{ color:inherit; }
   padding:0;
   display:flex;
   flex-wrap:wrap;
-  gap:9px;
+  gap:7px;
 }
 .tags li{
-  font-size:.83rem;
+  font-size:.75rem;
   color:var(--ink-soft);
   background:var(--bg);
   border:1px solid var(--rule);
   border-radius:999px;
-  padding:7px 16px;
+  padding:6px 13px;
   transition:color .18s ease, border-color .18s ease, background-color .18s ease;
 }
 @media (hover:hover){
