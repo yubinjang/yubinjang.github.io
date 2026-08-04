@@ -166,9 +166,9 @@ a{ color:inherit; }
   display:grid;
   grid-template-columns:minmax(0,1.35fr) minmax(0,.85fr);
   gap:clamp(32px, 6vw, 76px);
-  /* top-aligned so the portrait and the name start on the same line rather than
-     the photo floating in the middle of the text block */
-  align-items:start;
+  /* stretch, so the portrait is exactly as tall as the text beside it and the
+     two together read as one rectangle */
+  align-items:stretch;
 }
 
 /* every line in the hero wraps to the same measure, so the block reads as one
@@ -196,11 +196,21 @@ a{ color:inherit; }
 }
 
 .hero__lede{
-  margin:0 0 34px;
+  margin:0;
   font-size:1.06rem;
   color:var(--ink-soft);
 }
 
+/* right column: portrait on top, the two buttons beneath it. The portrait
+   flexes so the column ends level with the text column. */
+.hero__side{
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+  width:100%;
+  max-width:400px;
+  justify-self:end;
+}
 .hero__actions{ display:flex; flex-wrap:wrap; gap:12px; }
 
 .btn{
@@ -217,14 +227,14 @@ a{ color:inherit; }
 .btn--ghost{ border:1px solid var(--rule); color:var(--ink); }
 .btn--ghost:hover{ border-color:var(--accent); color:var(--accent); transform:translateY(-1px); }
 
-.hero__portrait{ margin:6px 0 0; max-width:400px; justify-self:end; width:100%; }
+.hero__portrait{ margin:0; flex:1 1 auto; min-height:260px; }
 .hero__portrait img{
   width:100%;
-  /* height:auto is required. The width/height attributes on the <img> set a
-     presentational height, and aspect-ratio only applies when height is auto. */
-  height:auto;
-  aspect-ratio:4/5;
+  height:100%;
   object-fit:cover;
+  /* the crop bites into the sides as the frame gets taller, so bias upward to
+     keep the face clear of it */
+  object-position:50% 18%;
   border-radius:4px;
   background:var(--bg-alt);
   filter:saturate(.92);
@@ -705,7 +715,12 @@ a{ color:inherit; }
 
 @media (max-width:900px){
   .hero__grid{ grid-template-columns:1fr; }
-  .hero__portrait{ order:-1; max-width:290px; justify-self:start; }
+  /* display:contents drops the wrapper so the three blocks can be ordered
+     independently in the single-column flow */
+  .hero__side{ display:contents; }
+  .hero__portrait{ order:-1; max-width:290px; justify-self:start; min-height:0; }
+  .hero__portrait img{ height:auto; aspect-ratio:4/5; object-position:50% 50%; }
+  .hero__actions{ order:1; margin-top:8px; }
   .cols{ grid-template-columns:1fr; }
   .cols__side{ border-top:1px solid var(--rule); padding-top:26px; }
 }

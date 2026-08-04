@@ -98,20 +98,22 @@
         interviews that explain what the numbers leave out.
       </p>
 
+    </div>
+
+    <div class="hero__side">
+      <figure class="hero__portrait">
+        <!-- Drop your headshot in as assets/img/headshot.jpg. Until then a placeholder shows.
+             The inline onerror is deliberate. A listener added from main.js can miss the error
+             event, which fires while the deferred script is still loading. -->
+        <img id="headshot" src="assets/img/headshot.jpg" alt="Portrait of Yubin Jang"
+             width="640" height="800"
+             onerror="this.onerror=null;this.src='assets/img/placeholder.svg';this.alt='Placeholder portrait. Replace assets/img/headshot.jpg with your photo.';">
+      </figure>
       <div class="hero__actions">
         <a class="btn btn--solid" href="#research">Read my research</a>
         <a class="btn btn--ghost" href="cv/Jang_Yubin_CV.pdf" target="_blank" rel="noopener">Download CV</a>
       </div>
     </div>
-
-    <figure class="hero__portrait">
-      <!-- Drop your headshot in as assets/img/headshot.jpg. Until then a placeholder shows.
-           The inline onerror is deliberate. A listener added from main.js can miss the error
-           event, which fires while the deferred script is still loading. -->
-      <img id="headshot" src="assets/img/headshot.jpg" alt="Portrait of Yubin Jang"
-           width="640" height="800"
-           onerror="this.onerror=null;this.src='assets/img/placeholder.svg';this.alt='Placeholder portrait. Replace assets/img/headshot.jpg with your photo.';">
-    </figure>
   </div>
 </section>
 
