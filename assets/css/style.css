@@ -127,13 +127,22 @@ a{ color:inherit; }
   color:var(--ink);
   border-bottom-color:var(--accent);
 }
-.nav__cv{
+/* Links that leave the page you are on, rather than jumping within it. Set in
+   pills so they read as destinations and not as one more section in the run of
+   anchors beside them. */
+.nav__out{
   border:1px solid var(--rule) !important;
   border-radius:999px;
   padding:5px 15px !important;
   background:transparent;
 }
-.nav__cv:hover{
+.nav__out:hover{
+  border-color:var(--accent) !important;
+  color:var(--accent);
+}
+/* the plain anchors mark the current section with an underline, which a pill
+   has no room for, so it takes the accent on its whole border instead */
+.nav__links a.nav__out.is-current{
   border-color:var(--accent) !important;
   color:var(--accent);
 }
@@ -860,12 +869,16 @@ a{ color:inherit; }
     font-size:.95rem;
   }
   .nav__links a.is-current{ border-bottom-color:var(--rule); color:var(--accent); }
-  .nav__cv{
+  /* the drawer is a list of rows, so the pills flatten into rows like the rest
+     and keep the divider that holds the list together */
+  .nav__out{
     border:0 !important;
+    border-bottom:1px solid var(--rule) !important;
     border-radius:0;
     padding:11px 0 !important;
     color:var(--accent) !important;
   }
+  .nav__links a:last-child.nav__out{ border-bottom:0 !important; }
 }
 
 @media (max-width:560px){

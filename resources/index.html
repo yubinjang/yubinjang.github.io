@@ -76,9 +76,10 @@
       <a href="../#teaching">Teaching</a>
       <a href="../#awards">Awards</a>
       <a href="../#service">Service</a>
-      <a class="is-current" href="./" aria-current="page">Resources</a>
       <a href="../#contact">Contact</a>
-      <a class="nav__cv" href="../cv/Jang_Yubin_CV.pdf" target="_blank" rel="noopener">CV</a>
+      <!-- the two links that leave the home page, in the same order it puts them -->
+      <a class="nav__out is-current" href="./" aria-current="page">Resources</a>
+      <a class="nav__out" href="../cv/Jang_Yubin_CV.pdf" target="_blank" rel="noopener">CV</a>
     </nav>
   </div>
 </header>
@@ -110,6 +111,7 @@
       <button class="tab is-active" role="tab" aria-selected="true"  aria-controls="tab-academic"  id="btn-academic">Academic life</button>
       <button class="tab"           role="tab" aria-selected="false" aria-controls="tab-methods"   id="btn-methods">Methods</button>
       <button class="tab"           role="tab" aria-selected="false" aria-controls="tab-software"  id="btn-software">Software</button>
+      <button class="tab"           role="tab" aria-selected="false" aria-controls="tab-ai"        id="btn-ai">AI</button>
       <button class="tab"           role="tab" aria-selected="false" aria-controls="tab-data"      id="btn-data">Data</button>
       <button class="tab"           role="tab" aria-selected="false" aria-controls="tab-community" id="btn-community">Community</button>
       <button class="tab"           role="tab" aria-selected="false" aria-controls="tab-korean"    id="btn-korean">한국어 자료</button>
@@ -147,6 +149,10 @@
         <li>
           <a class="res__link" href="https://theprofessorisin.com/pearlsofwisdom/" target="_blank" rel="noopener">The Professor Is In, Pearls of Wisdom</a>
           <span class="res__by">Dr. Karen Kelsky. Blunt advice on the market, the CV, and the letter.</span>
+        </li>
+        <li>
+          <a class="res__link" href="https://claesbackman.com/resources.html" target="_blank" rel="noopener">The hidden curriculum</a>
+          <span class="res__by">Dr. Claes Bäckman. Writing, presenting, coding, managing stress, and the job market, all the things a doctoral program assumes you already know.</span>
         </li>
       </ul>
     </div>
@@ -218,6 +224,34 @@
             <li>
               <a class="res__link" href="https://www2.stat.duke.edu/~fl35/CausalInferenceClass.html" target="_blank" rel="noopener">STA 640, Causal Inference</a>
               <span class="res__by">Dr. Fan Li, Duke University. Course slides and reading list.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="res-group">
+          <h3 class="panel__head">Time series and panel data</h3>
+          <ul class="res">
+            <li>
+              <a class="res__link" href="https://cacoleman16.github.io/tsecon/guide/" target="_blank" rel="noopener">The tsecon Guide to Time Series Econometrics</a>
+              <span class="res__by">Fifteen chapters from the first autocorrelation plot through structural identification, every concept paired with code that runs.</span>
+            </li>
+            <li>
+              <a class="res__link" href="https://econometricsandtimeseries.com/" target="_blank" rel="noopener">Econometrics and Time Series Methods</a>
+              <span class="res__by">Companion site with supplementary material for the textbook</span>
+            </li>
+            <li>
+              <a class="res__link" href="https://paneldatastata-github-io.vercel.app/" target="_blank" rel="noopener">Panel Data Analysis in Stata</a>
+              <span class="res__by">Dr. Noman Arshed, Sunway Business School. A 55-video course running from data preparation through fixed effects, GMM, and spatial models.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="res-group">
+          <h3 class="panel__head">Social network analysis</h3>
+          <ul class="res">
+            <li>
+              <a class="res__link" href="https://sites.google.com/msu.edu/kenfrank/social-network-resources" target="_blank" rel="noopener">Social network resources</a>
+              <span class="res__by">Dr. Ken Frank, Michigan State University. Slides, datasets, and code in R, SAS, SPSS, and Stata for separating influence from selection, plus KliqueFinder.</span>
             </li>
           </ul>
         </div>
@@ -296,6 +330,41 @@
       </div>
     </div>
 
+    <!-- AI -->
+    <div class="panel" role="tabpanel" id="tab-ai" aria-labelledby="btn-ai" tabindex="0" hidden>
+      <h2 class="panel__title">AI</h2>
+      <p class="panel__lede">
+        How other researchers are actually using large language models and agentic coding tools in
+        their work, written by people who publish in our fields rather than by vendors.
+      </p>
+
+      <ul class="res">
+        <li>
+          <a class="res__link" href="https://chaek.org/books/llm-wiki-for-scientists/README" target="_blank" rel="noopener">LLM-Wiki, 지식이 축적되는 AI 작업 환경 만들기</a>
+          <span class="res__by">안준용 교수, 고려대학교. Building a wiki out of your AI conversations so that what you work out once stays worked out.</span>
+        </li>
+        <li>
+          <a class="res__link" href="https://qgallea.github.io/genai_and_research/lectures/13_agentic_ai.html" target="_blank" rel="noopener">GenAI and Research, the session on agentic AI</a>
+          <span class="res__by">Dr. Quentin Gallea, The Causal Mindset. Setup, project context files, sub-agents, and why agents need more planning than a chatbot rather than less.</span>
+        </li>
+        <li>
+          <a class="res__link" href="https://github.com/ballesterogh/Practitioner-Guide-Agentic-AI" target="_blank" rel="noopener">A Practitioner's Guide to Agentic AI Tools</a>
+          <span class="res__by">Gonzalo Ballestero, Penn State. Written for economists, and the
+            <a class="il" href="https://github.com/ballesterogh/Practitioner-Guide-Agentic-AI/blob/main/slides_ballestero_lecture_agentic_coding.pdf" target="_blank" rel="noopener">lecture slides</a>
+            stand on their own.
+          </span>
+        </li>
+        <li>
+          <a class="res__link" href="https://www.alessandro-spina.com/claude-code/" target="_blank" rel="noopener">Claude Code for academics</a>
+          <span class="res__by">Dr. Alessandro Spina, University of Technology Sydney. Talks and open repositories on using it for empirical work.</span>
+        </li>
+        <li>
+          <a class="res__link" href="https://psantanna.com/claude-code-my-workflow/workflow-guide.html" target="_blank" rel="noopener">My Claude Code setup</a>
+          <span class="res__by">Dr. Pedro Sant'Anna, Emory University. One applied econometrician's whole workflow, start to finish.</span>
+        </li>
+      </ul>
+    </div>
+
     <!-- Data -->
     <div class="panel" role="tabpanel" id="tab-data" aria-labelledby="btn-data" tabindex="0" hidden>
       <h2 class="panel__title">Data</h2>
@@ -304,24 +373,45 @@
         that makes them usable.
       </p>
 
-      <ul class="res">
-        <li>
-          <a class="res__link" href="https://educationdata.urban.org/documentation/" target="_blank" rel="noopener">Education Data Portal</a>
-          <span class="res__by">Urban Institute. Common Core of Data, CRDC, IPEDS, and more, harmonized and served through an API.</span>
-        </li>
-        <li>
-          <a class="res__link" href="https://www.icpsr.umich.edu/sites/icpsr/home" target="_blank" rel="noopener">ICPSR</a>
-          <span class="res__by">University of Michigan. Social science data archive and summer program.</span>
-        </li>
-        <li>
-          <a class="res__link" href="https://www.oecd.org/en/about/programmes/pisa/pisa-data.html" target="_blank" rel="noopener">PISA data and methodology</a>
-          <span class="res__by">OECD. Every cycle, with the technical reports that explain the weights.</span>
-        </li>
-        <li>
-          <a class="res__link" href="https://docs.google.com/spreadsheets/d/1xjw5Z0LLK4Fp-vrEK523uvMnSfxtJOb_5f_vKUrZJDg/edit" target="_blank" rel="noopener">List of state administrative data</a>
-          <span class="res__by">A shared spreadsheet of state longitudinal data systems and access procedures.</span>
-        </li>
-      </ul>
+      <div class="res-group">
+        <h3 class="panel__head">Datasets and portals</h3>
+        <ul class="res">
+          <li>
+            <a class="res__link" href="https://educationdata.urban.org/documentation/" target="_blank" rel="noopener">Education Data Portal</a>
+            <span class="res__by">Urban Institute. Common Core of Data, CRDC, IPEDS, and more, harmonized and served through an API.</span>
+          </li>
+          <li>
+            <a class="res__link" href="https://edunomicslab.org/ed-finance-related-datasets/" target="_blank" rel="noopener">Education finance datasets</a>
+            <span class="res__by">Edunomics Lab, Georgetown University. A table of the finance collections with what each one covers and where it stops.</span>
+          </li>
+          <li>
+            <a class="res__link" href="https://www.icpsr.umich.edu/sites/icpsr/home" target="_blank" rel="noopener">ICPSR</a>
+            <span class="res__by">University of Michigan. Social science data archive and summer program.</span>
+          </li>
+          <li>
+            <a class="res__link" href="https://www.oecd.org/en/about/programmes/pisa/pisa-data.html" target="_blank" rel="noopener">PISA data and methodology</a>
+            <span class="res__by">OECD. Every cycle, with the technical reports that explain the weights.</span>
+          </li>
+          <li>
+            <a class="res__link" href="https://docs.google.com/spreadsheets/d/1xjw5Z0LLK4Fp-vrEK523uvMnSfxtJOb_5f_vKUrZJDg/edit" target="_blank" rel="noopener">List of state administrative data</a>
+            <span class="res__by">A shared spreadsheet of state longitudinal data systems and access procedures.</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="res-group">
+        <h3 class="panel__head">Repositories and worked examples</h3>
+        <ul class="res">
+          <li>
+            <a class="res__link" href="https://edpreplab.org/resource-library" target="_blank" rel="noopener">EdPrepLab Resource Library</a>
+            <span class="res__by">Learning Policy Institute and Bank Street Graduate School of Education. Research, artifacts, and program materials on educator preparation.</span>
+          </li>
+          <li>
+            <a class="res__link" href="https://doi.org/10.7916/q2zr-qd07" target="_blank" rel="noopener">NYC equity indicators, online supplement</a>
+            <span class="res__by">Bowers and colleagues, Teachers College, Columbia University. Open R Markdown that loads, cleans, and visualizes New York City district data against the sixteen NASEM equity indicators.</span>
+          </li>
+        </ul>
+      </div>
     </div>
 
     <!-- Community -->
