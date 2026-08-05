@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Resources | Yubin Jang</title>
+<meta name="description" content="A working list of the resources Yubin Jang returns to for the academic job market, quantitative methods, statistical software, and public education data, including Korean-language material.">
+<meta name="author" content="Yubin Jang">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Resources | Yubin Jang">
+<meta property="og:description" content="Resources for the academic job market, quantitative methods, statistical software, and public education data, including Korean-language material.">
+<meta property="og:image" content="../assets/img/headshot.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='25' x='2' font-size='24' font-family='Georgia,serif'>YJ</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+
+<!-- Without JS the tabs cannot be switched and the reveal animation never runs, so
+     every animated block would stay invisible and five of the six panels would be
+     unreachable. Show everything as one long list instead. -->
+<noscript>
+  <style>
+    .reveal{ opacity:1 !important; transform:none !important; }
+    .panel[hidden]{ display:block !important; }
+    .tabs{ display:none; }
+    /* the tab labels are gone, so each panel needs its own heading back */
+    .panel__title{
+      position:static !important;
+      width:auto !important; height:auto !important;
+      margin:52px 0 14px !important;
+      overflow:visible !important;
+      clip:auto !important; clip-path:none !important;
+      white-space:normal !important;
+      font-family:var(--serif); font-weight:400;
+      font-size:clamp(1.8rem, 3.4vw, 2.5rem); line-height:1.12;
+    }
+    .tabs + .panel .panel__title{ margin-top:0 !important; }
+    .nav__toggle{ display:none !important; }
+    @media (max-width:900px){
+      .nav{ position:static; }
+      .nav__inner{ height:auto; flex-wrap:wrap; padding-block:12px; }
+      .nav__links{
+        position:static; flex-direction:row; flex-wrap:wrap; gap:6px 16px;
+        max-height:none; visibility:visible; overflow:visible;
+        padding:0; border:0; background:none;
+      }
+      .nav__links a{ width:auto; padding:2px 0; border-bottom:0; font-size:.85rem; }
+    }
+  </style>
+</noscript>
+</head>
+<body id="top">
+
+<a class="skip-link" href="#library">Skip to content</a>
+
+<!-- ─────────────────────────  NAV  ─────────────────────────
+     Same bar as the home page, with the section links pointed back at it. The
+     scroll spy in main.js only claims anchors that start with "#", so nothing
+     here fights it. -->
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a class="nav__brand" href="../">Yubin&nbsp;Jang</a>
+
+    <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="nav__links" id="navLinks" aria-label="Primary">
+      <a href="../#about">About</a>
+      <a href="../#research">Research</a>
+      <a href="../#publications">Publications</a>
+      <a href="../#teaching">Teaching</a>
+      <a href="../#awards">Awards</a>
+      <a href="../#service">Service</a>
+      <a class="is-current" href="./" aria-current="page">Resources</a>
+      <a href="../#contact">Contact</a>
+      <a class="nav__cv" href="../cv/Jang_Yubin_CV.pdf" target="_blank" rel="noopener">CV</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- ─────────────────────────  PAGE HEAD  ───────────────────────── -->
+<section class="pagehead">
+  <div class="wrap">
+    <a class="pagehead__back" href="../">&larr; Back to home</a>
+    <h1 class="pagehead__title">Resources</h1>
+    <p class="pagehead__lede">
+      A working list of what I return to and what I send to other graduate students. Most of it is
+      free, most of it is what I wish someone had handed me earlier, and all of it is here because
+      I have actually used it. Everything is maintained by the people credited beside it, so links
+      move and courses change. Tell me if one has gone stale.
+    </p>
+  </div>
+</section>
+
+<!-- ─────────────────────────  LIBRARY  ─────────────────────────
+     One tab per category, driven by the same selectTab code in main.js that runs
+     the publication tabs. The `hidden` attribute on the closed panels is what
+     keeps them closed before any script runs. -->
+<section class="section section--tight" id="library">
+  <div class="wrap">
+
+    <div class="tabs reveal" role="tablist" aria-label="Resource categories">
+      <button class="tab is-active" role="tab" aria-selected="true"  aria-controls="tab-academic"  id="btn-academic">Academic life</button>
+      <button class="tab"           role="tab" aria-selected="false" aria-controls="tab-methods"   id="btn-methods">Methods</button>
+      <button class="tab"           role="tab" aria-selected="false" aria-controls="tab-software"  id="btn-software">Software</button>
+      <button class="tab"           role="tab" aria-selected="false" aria-controls="tab-data"      id="btn-data">Data</button>
+      <button class="tab"           role="tab" aria-selected="false" aria-controls="tab-community" id="btn-community">Community</button>
+      <button class="tab"           role="tab" aria-selected="false" aria-controls="tab-korean"    id="btn-korean">한국어 자료</button>
+    </div>
+
+    <!-- Academic life -->
+    <div class="panel is-active" role="tabpanel" id="tab-academic" aria-labelledby="btn-academic" tabindex="0">
+      <h2 class="panel__title">Academic life</h2>
+      <p class="panel__lede">
+        Advice on graduate school and the faculty job market, from people who have written it down
+        so the rest of us do not have to guess.
+      </p>
+
+      <ul class="res">
+        <li>
+          <a class="res__link" href="https://archive.jinalee.org/" target="_blank" rel="noopener">모르는 채로 나아가기</a>
+          <span class="res__by">Dr. Jina Lee, University of Illinois Urbana-Champaign. An archive of notes on moving through graduate school without knowing where it goes.</span>
+        </li>
+        <li>
+          <a class="res__link" href="https://www.paul-bruno.com/2021/07/tips-for-the-academic-job-market/" target="_blank" rel="noopener">Some basic tips about the academic job market</a>
+          <span class="res__by">Dr. Paul Bruno, University of Illinois Urbana-Champaign</span>
+        </li>
+        <li>
+          <span class="res__title">Job market materials, with samples</span>
+          <span class="res__by">Research statements and application materials from
+            <a class="il" href="https://careerservices.upenn.edu/application-materials-for-the-faculty-job-search/research-statements-for-faculty-job-applications/" target="_blank" rel="noopener">Penn Career Services</a>,
+            <a class="il" href="https://gradschool.cornell.edu/career-and-professional-development/pathways-to-success/prepare-for-your-career/take-action/research-statement/" target="_blank" rel="noopener">the Cornell Graduate School</a>, and
+            <a class="il" href="https://ucea.org/handbook_8.php" target="_blank" rel="noopener">the UCEA handbook</a>
+          </span>
+        </li>
+        <li>
+          <a class="res__link" href="https://udel.edu/~skbruch/teaching.html" target="_blank" rel="noopener">Graduate student professional development resources</a>
+          <span class="res__by">Dr. Sarah Bruch, University of Delaware</span>
+        </li>
+        <li>
+          <a class="res__link" href="https://theprofessorisin.com/pearlsofwisdom/" target="_blank" rel="noopener">The Professor Is In, Pearls of Wisdom</a>
+          <span class="res__by">Dr. Karen Kelsky. Blunt advice on the market, the CV, and the letter.</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Methods -->
+    <div class="panel" role="tabpanel" id="tab-methods" aria-labelledby="btn-methods" tabindex="0" hidden>
+      <h2 class="panel__title">Methods</h2>
+      <p class="panel__lede">
+        Courses, primers, and textbooks that are free to read, from the probability sequence through
+        the estimators I actually use.
+      </p>
+
+      <div class="res-group">
+        <h3 class="panel__head">Foundations</h3>
+        <ul class="res">
+          <li>
+            <a class="res__link" href="https://stat110.hsites.harvard.edu/about" target="_blank" rel="noopener">Statistics 110, Probability</a>
+            <span class="res__by">Dr. Joseph Blitzstein, Harvard University. Full lecture videos, problem sets, and the book.</span>
+          </li>
+          <li>
+            <a class="res__link" href="https://www.jbstatistics.com/" target="_blank" rel="noopener">jbstatistics</a>
+            <span class="res__by">Dr. Jeremy Balka. Short videos on the introductory sequence, one concept at a time.</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="res-cols">
+        <div class="res-group">
+          <h3 class="panel__head">Multilevel and longitudinal models</h3>
+          <ul class="res">
+            <li>
+              <a class="res__link" href="https://e-m-mccormick.github.io/static/longitudinal-primer/" target="_blank" rel="noopener">The Hitchhiker's Guide to Longitudinal Models</a>
+              <span class="res__by">Dr. Ethan McCormick</span>
+            </li>
+            <li>
+              <a class="res__link" href="https://www.bristol.ac.uk/cmm/learning/videos/" target="_blank" rel="noopener">Centre for Multilevel Modelling, video course</a>
+              <span class="res__by">University of Bristol</span>
+            </li>
+            <li>
+              <a class="res__link" href="https://www.learn-mlms.com/" target="_blank" rel="noopener">Introduction to Multilevel Modeling</a>
+              <span class="res__by">Mairead Shaw and Dr. Jessica Flake, McGill University</span>
+            </li>
+            <li>
+              <a class="res__link" href="https://rpubs.com/rslbliss/r_mlm_ws" target="_blank" rel="noopener">Multilevel Modeling in R</a>
+              <span class="res__by">Richard Blissett, with UCLA IDRE</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="res-group">
+          <h3 class="panel__head">Causal inference</h3>
+          <ul class="res">
+            <li>
+              <a class="res__link" href="https://mixtape.scunning.com/" target="_blank" rel="noopener">Causal Inference, The Mixtape</a>
+              <span class="res__by">Dr. Scott Cunningham. Free online edition with Stata, R, and Python code.</span>
+            </li>
+            <li>
+              <a class="res__link" href="https://matheusfacure.github.io/python-causality-handbook/landing-page.html" target="_blank" rel="noopener">Causal Inference for the Brave and True</a>
+              <span class="res__by">Matheus Facure</span>
+            </li>
+            <li>
+              <a class="res__link" href="https://asjadnaqvi.github.io/DiD/" target="_blank" rel="noopener">Difference-in-differences in Stata and R</a>
+              <span class="res__by">Dr. Asjad Naqvi. A running catalogue of the new estimators with worked code.</span>
+            </li>
+            <li>
+              <a class="res__link" href="https://friosavila.github.io/app_metrics/" target="_blank" rel="noopener">Playing with Stata, applied econometrics</a>
+              <span class="res__by">Dr. Fernando Rios-Avila</span>
+            </li>
+            <li>
+              <a class="res__link" href="https://www2.stat.duke.edu/~fl35/CausalInferenceClass.html" target="_blank" rel="noopener">STA 640, Causal Inference</a>
+              <span class="res__by">Dr. Fan Li, Duke University. Course slides and reading list.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Software -->
+    <div class="panel" role="tabpanel" id="tab-software" aria-labelledby="btn-software" tabindex="0" hidden>
+      <h2 class="panel__title">Software</h2>
+      <p class="panel__lede">
+        Manuals, cheat sheets, and training for the packages that do the work.
+      </p>
+
+      <div class="res-cols">
+        <div class="res-group">
+          <h3 class="panel__head">R</h3>
+          <ul class="res">
+            <li>
+              <a class="res__link" href="https://r4ds.hadley.nz/" target="_blank" rel="noopener">R for Data Science</a>
+              <span class="res__by">Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund. Second edition, free online.</span>
+            </li>
+            <li>
+              <a class="res__link" href="https://cran.r-project.org/doc/manuals/r-release/R-intro.html" target="_blank" rel="noopener">An Introduction to R</a>
+              <span class="res__by">R Core Team. The official manual.</span>
+            </li>
+            <li>
+              <a class="res__link" href="https://benwhalley.github.io/just-enough-r/" target="_blank" rel="noopener">Just Enough R</a>
+              <span class="res__by">Dr. Ben Whalley. Written for people who need the analysis, not the language.</span>
+            </li>
+            <li>
+              <a class="res__link" href="https://r-graphics.org/index.html" target="_blank" rel="noopener">R Graphics Cookbook</a>
+              <span class="res__by">Winston Chang. Second edition, free online.</span>
+            </li>
+            <li>
+              <a class="res__link" href="https://studysites.sagepub.com/dsur/default.htm" target="_blank" rel="noopener">Discovering Statistics Using R, companion site</a>
+              <span class="res__by">Andy Field, Jeremy Miles, and Zoë Field. Datasets, R scripts, and self-test material from SAGE.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="res-group">
+          <h3 class="panel__head">Stata</h3>
+          <ul class="res">
+            <li>
+              <a class="res__link" href="https://www.stata.com/training/webinar/past-webinar-recordings/" target="_blank" rel="noopener">Past webinar recordings</a>
+              <span class="res__by">StataCorp. Free to watch.</span>
+            </li>
+            <li>
+              <a class="res__link" href="https://www.stata.com/training/webinar/" target="_blank" rel="noopener">Upcoming webinars</a>
+              <span class="res__by">StataCorp. Registration, some sessions paid.</span>
+            </li>
+            <li>
+              <a class="res__link" href="https://www.stata.com/flyers/stata-cheat-sheets/" target="_blank" rel="noopener">Stata cheat sheets</a>
+              <span class="res__by">Tim Essam and Laura Hughes, hosted by StataCorp</span>
+            </li>
+            <li>
+              <a class="res__link" href="https://www.princeton.edu/~otorres/StataTutorial.pdf" target="_blank" rel="noopener">Getting Started in Stata (PDF)</a>
+              <span class="res__by">Oscar Torres-Reyna, Princeton University</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="res-group">
+        <h3 class="panel__head">Other packages</h3>
+        <ul class="res">
+          <li>
+            <a class="res__link" href="https://www.statmodel.com/courses_dates.shtml" target="_blank" rel="noopener">Mplus training courses</a>
+            <span class="res__by">Muthén &amp; Muthén. Short course schedule and archived materials.</span>
+          </li>
+          <li>
+            <a class="res__link" href="https://www.surrey.ac.uk/computer-assisted-qualitative-data-analysis/resources/software-information" target="_blank" rel="noopener">Comparing qualitative analysis software</a>
+            <span class="res__by">CAQDAS Networking Project, University of Surrey. Side by side reviews of NVivo, ATLAS.ti, MAXQDA, and others.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Data -->
+    <div class="panel" role="tabpanel" id="tab-data" aria-labelledby="btn-data" tabindex="0" hidden>
+      <h2 class="panel__title">Data</h2>
+      <p class="panel__lede">
+        Public archives and portals for education and social science research, with the documentation
+        that makes them usable.
+      </p>
+
+      <ul class="res">
+        <li>
+          <a class="res__link" href="https://educationdata.urban.org/documentation/" target="_blank" rel="noopener">Education Data Portal</a>
+          <span class="res__by">Urban Institute. Common Core of Data, CRDC, IPEDS, and more, harmonized and served through an API.</span>
+        </li>
+        <li>
+          <a class="res__link" href="https://www.icpsr.umich.edu/sites/icpsr/home" target="_blank" rel="noopener">ICPSR</a>
+          <span class="res__by">University of Michigan. Social science data archive and summer program.</span>
+        </li>
+        <li>
+          <a class="res__link" href="https://www.oecd.org/en/about/programmes/pisa/pisa-data.html" target="_blank" rel="noopener">PISA data and methodology</a>
+          <span class="res__by">OECD. Every cycle, with the technical reports that explain the weights.</span>
+        </li>
+        <li>
+          <a class="res__link" href="https://docs.google.com/spreadsheets/d/1xjw5Z0LLK4Fp-vrEK523uvMnSfxtJOb_5f_vKUrZJDg/edit" target="_blank" rel="noopener">List of state administrative data</a>
+          <span class="res__by">A shared spreadsheet of state longitudinal data systems and access procedures.</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Community -->
+    <div class="panel" role="tabpanel" id="tab-community" aria-labelledby="btn-community" tabindex="0" hidden>
+      <h2 class="panel__title">Community and consulting</h2>
+      <p class="panel__lede">
+        Where to take a question when the manual does not answer it.
+      </p>
+
+      <ul class="res">
+        <li>
+          <a class="res__link" href="https://stats.oarc.ucla.edu/" target="_blank" rel="noopener">UCLA Statistical Methods and Data Analytics</a>
+          <span class="res__by">Worked examples in R, Stata, SAS, SPSS, and Mplus. The first place I look for a syntax question.</span>
+        </li>
+        <li>
+          <a class="res__link" href="https://www.sscc.wisc.edu/" target="_blank" rel="noopener">Social Science Computing Cooperative</a>
+          <span class="res__by">University of Wisconsin-Madison. Public guides on Stata, R, and data management.</span>
+        </li>
+        <li>
+          <a class="res__link" href="https://www.statalist.org/" target="_blank" rel="noopener">Statalist</a>
+          <span class="res__by">The Stata forum. Search it before asking, then ask well.</span>
+        </li>
+        <li>
+          <a class="res__link" href="https://quantitudepod.org/" target="_blank" rel="noopener">Quantitude</a>
+          <span class="res__by">Dr. Patrick Curran and Dr. Greg Hancock. A podcast on quantitative methods and the culture around them.</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Korean -->
+    <div class="panel" role="tabpanel" id="tab-korean" aria-labelledby="btn-korean" tabindex="0" hidden>
+      <h2 class="panel__title">한국어 자료</h2>
+      <p class="panel__lede">
+        Korean-language methods material, for students working in Korean or with Korean data.
+      </p>
+
+      <ul class="res">
+        <li>
+          <a class="res__link" href="https://kossda.snu.ac.kr/" target="_blank" rel="noopener">한국사회과학자료원 (KOSSDA)</a>
+          <span class="res__by">Seoul National University. Korea Social Science Data Archive.</span>
+        </li>
+        <li>
+          <a class="res__link" href="https://wikidocs.net/book/4315" target="_blank" rel="noopener">Must Learning with R</a>
+          <span class="res__by">DoublekPark. A full R course in Korean, free on WikiDocs.</span>
+        </li>
+        <li>
+          <a class="res__link" href="https://sites.google.com/site/snowcau/home/jamovi-program" target="_blank" rel="noopener">jamovi 튜토리얼</a>
+          <span class="res__by">설현수 교수, 중앙대학교</span>
+        </li>
+        <li>
+          <a class="res__link" href="http://www.statedu.com/" target="_blank" rel="noopener">StataEdu</a>
+          <span class="res__by">Stata training and materials in Korean</span>
+        </li>
+        <li>
+          <a class="res__link" href="https://blog.naver.com/9065031" target="_blank" rel="noopener">교육통계연구소</a>
+          <span class="res__by">Naver blog on education statistics and analysis</span>
+        </li>
+        <li>
+          <a class="res__link" href="https://kier.korea.ac.kr/kier/community/notice.do" target="_blank" rel="noopener">고려대학교 교육연구소 방법론 워크숍</a>
+          <span class="res__by">Workshop announcements from the Korea University Institute of Educational Research</span>
+        </li>
+        <li>
+          <a class="res__link" href="https://cafe.daum.net/rcran/Hh8i" target="_blank" rel="noopener">R을 이용한 데이터 분석</a>
+          <span class="res__by">Daum cafe. A long-running Korean R community.</span>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__inner">
+    <p>&copy; <span id="year">2026</span> Yubin Jang</p>
+    <a href="#top" class="foot__top">Back to top &uarr;</a>
+  </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

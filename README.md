@@ -16,10 +16,11 @@ Type is [Spectral](https://fonts.google.com/specimen/Spectral) and
 ## Structure
 
 ```
-├── index.html          all content
+├── index.html          the single-page site
+├── resources/          /resources, a tabbed list of links for other researchers
 ├── assets/
 │   ├── css/style.css   design tokens are the custom properties at the top
-│   ├── js/main.js      nav, scroll spy, reveal, publication tabs
+│   ├── js/main.js      nav, scroll spy, reveal, tabs
 │   └── img/
 ├── cv/                 CV as PDF
 └── .nojekyll           serve files as-is, no Jekyll processing
