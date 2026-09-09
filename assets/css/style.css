@@ -406,6 +406,7 @@ a{ color:inherit; }
 
 /* ---------------------------------------------------------- PUBLICATIONS */
 
+/* Tabs now belong to /resources only. The publication list below is flat. */
 .tabs{
   display:flex; flex-wrap:wrap; gap:8px;
   margin-bottom:clamp(30px, 4vw, 46px);
@@ -435,6 +436,53 @@ a{ color:inherit; }
 .panel[hidden]{ display:none; }
 @keyframes fade{ from{ opacity:0; transform:translateY(6px);} to{ opacity:1; transform:none;} }
 
+.pubs__intro{
+  max-width:62ch;
+  margin:0 0 clamp(22px, 3vw, 32px);
+  color:var(--ink-soft);
+  font-size:1rem;
+}
+
+/* Every group stays on the page, so browser find and a printed copy both reach
+   the whole list. These are shortcuts down the page, not tabs that hide things. */
+.jump{
+  display:flex; flex-wrap:wrap; gap:8px;
+  margin-bottom:clamp(30px, 4vw, 46px);
+  border-bottom:1px solid var(--rule);
+  padding-bottom:14px;
+}
+.jump__link{
+  font-family:var(--sans);
+  font-size:.85rem;
+  letter-spacing:.02em;
+  color:var(--muted);
+  text-decoration:none;
+  border:1px solid var(--rule);
+  border-radius:999px;
+  padding:7px 17px;
+  transition:color .18s ease, background .18s ease, border-color .18s ease;
+}
+.jump__link:hover,
+.jump__link:focus-visible{
+  color:var(--bg);
+  background:var(--ink);
+  border-color:var(--ink);
+}
+
+.pubgroup{ scroll-margin-top:calc(var(--nav-h) + 18px); }
+.pubgroup + .pubgroup{ margin-top:clamp(38px, 5vw, 60px); }
+
+.pubgroup__title{
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:clamp(1.28rem, 2.1vw, 1.55rem);
+  letter-spacing:-.01em;
+  color:var(--ink);
+  margin:0 0 6px;
+  padding-bottom:10px;
+  border-bottom:2px solid var(--ink);
+}
+
 .panel__head{
   font-size:.74rem;
   font-weight:600;
@@ -446,6 +494,7 @@ a{ color:inherit; }
   border-bottom:1px solid var(--rule);
 }
 .panel__head:first-child{ margin-top:0; }
+.pubgroup__title + .panel__head{ margin-top:22px; }
 .panel__head-note{
   color:var(--muted);
   font-weight:400;
@@ -478,7 +527,7 @@ a{ color:inherit; }
 
 .pub__link{
   display:inline-block;
-  margin-top:7px; margin-right:10px;
+  margin-top:7px; margin-right:14px;
   font-size:.76rem;
   letter-spacing:.08em;
   text-transform:uppercase;

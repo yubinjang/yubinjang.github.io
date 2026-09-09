@@ -118,7 +118,10 @@
     });
   });
 
-  /* ---------- publication tabs ---------- */
+  /* ---------- tab panels ----------
+     Only /resources uses these now. The publication list on the home page was
+     flattened into always-visible groups, so browser find and print reach all
+     of it. Leave this in place while the resources page still has tabs. */
   var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
 
   function selectTab(tab) {
@@ -149,4 +152,5 @@
       next.focus();
     });
   });
+
 })();

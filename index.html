@@ -24,8 +24,6 @@
 <noscript>
   <style>
     .reveal{ opacity:1 !important; transform:none !important; }
-    .panel[hidden]{ display:block !important; }
-    .tabs{ display:none; }
     /* the mobile menu cannot be opened without JS, so lay the links out inline */
     .nav__toggle{ display:none !important; }
     @media (max-width:900px){
@@ -251,17 +249,24 @@
   <div class="wrap">
     <h2 class="section__title reveal">Publications</h2>
 
-    <div class="tabs reveal" role="tablist" aria-label="Publication categories">
-      <button class="tab is-active" role="tab" aria-selected="true"  aria-controls="tab-articles"      id="btn-articles">Journal Articles</button>
-      <button class="tab"           role="tab" aria-selected="false" aria-controls="tab-chapters"      id="btn-chapters">Book Chapters</button>
-      <button class="tab"           role="tab" aria-selected="false" aria-controls="tab-reports"       id="btn-reports">Reports</button>
-      <button class="tab"           role="tab" aria-selected="false" aria-controls="tab-presentations" id="btn-presentations">Presentations</button>
-    </div>
+    <p class="pubs__intro reveal">
+      Peer-reviewed articles, book chapters, reports, and presentations, grouped by type and
+      then by status. My <a class="il" href="cv/Jang_Yubin_CV.pdf" target="_blank" rel="noopener">full CV</a>
+      carries the complete record.
+    </p>
+
+    <nav class="jump reveal" aria-label="Publication categories">
+      <a class="jump__link" href="#pubs-articles">Journal Articles</a>
+      <a class="jump__link" href="#pubs-chapters">Book Chapters</a>
+      <a class="jump__link" href="#pubs-reports">Reports</a>
+      <a class="jump__link" href="#pubs-presentations">Presentations</a>
+    </nav>
 
     <!-- Journal articles -->
-    <div class="panel is-active" role="tabpanel" id="tab-articles" aria-labelledby="btn-articles" tabindex="0">
+    <div class="pubgroup reveal" id="pubs-articles">
+      <h3 class="pubgroup__title">Journal Articles</h3>
 
-      <h3 class="panel__head">Published</h3>
+      <h4 class="panel__head">Published</h4>
       <ol class="pubs">
         <li class="pub">
           <span class="pub__year">2026</span>
@@ -293,7 +298,7 @@
         </li>
       </ol>
 
-      <h3 class="panel__head">Under review</h3>
+      <h4 class="panel__head">Under review</h4>
       <ol class="pubs">
         <li class="pub">
           <span class="pub__year">Submitted</span>
@@ -309,7 +314,7 @@
         </li>
       </ol>
 
-      <h3 class="panel__head">Working paper</h3>
+      <h4 class="panel__head">Working paper</h4>
       <ol class="pubs">
         <li class="pub">
           <span class="pub__year">WP</span>
@@ -318,9 +323,16 @@
             <a class="pub__link" href="https://doi.org/10.26300/z366-8754" target="_blank" rel="noopener">Preprint</a>
           </div>
         </li>
+        <li class="pub">
+          <span class="pub__year">WP</span>
+          <div class="pub__body">
+            <p><strong>Jang, Y.</strong>, &amp; Bailes, L. (2025). From funds to frameworks: How states operationalize Title II education funding. <em>EdWorkingPaper No. 25-1256, Annenberg Institute at Brown University</em>.</p>
+            <a class="pub__link" href="https://doi.org/10.26300/yk47-aq26" target="_blank" rel="noopener">Preprint</a>
+          </div>
+        </li>
       </ol>
 
-      <h3 class="panel__head">In progress <span class="panel__head-note">(selected)</span></h3>
+      <h4 class="panel__head">In progress <span class="panel__head-note">(selected)</span></h4>
       <ol class="pubs pubs--plain">
         <li class="pub"><div class="pub__body"><p><strong>Jang, Y.</strong>, &amp; Bailes, L. Mixed-methods study on Title II use in Delaware districts.</p></div></li>
         <li class="pub"><div class="pub__body"><p><strong>Jang, Y.</strong>, Shores, K., Sajjadi, M., &amp; Desimone, L. Estimating the access to and impact of a culturally responsive professional learning partnership on student outcomes.</p></div></li>
@@ -330,7 +342,8 @@
     </div>
 
     <!-- Book chapters -->
-    <div class="panel" role="tabpanel" id="tab-chapters" aria-labelledby="btn-chapters" tabindex="0" hidden>
+    <div class="pubgroup reveal" id="pubs-chapters">
+      <h3 class="pubgroup__title">Book Chapters</h3>
       <ol class="pubs">
         <li class="pub">
           <span class="pub__year">In press</span>
@@ -349,8 +362,9 @@
     </div>
 
     <!-- Reports -->
-    <div class="panel" role="tabpanel" id="tab-reports" aria-labelledby="btn-reports" tabindex="0" hidden>
-      <h3 class="panel__head">Technical &amp; government reports</h3>
+    <div class="pubgroup reveal" id="pubs-reports">
+      <h3 class="pubgroup__title">Reports</h3>
+      <h4 class="panel__head">Technical &amp; government reports</h4>
       <ol class="pubs">
         <li class="pub">
           <span class="pub__year">2025</span>
@@ -374,7 +388,7 @@
         </li>
       </ol>
 
-      <h3 class="panel__head">Conference proceeding</h3>
+      <h4 class="panel__head">Conference proceeding</h4>
       <ol class="pubs">
         <li class="pub">
           <span class="pub__year">2023</span>
@@ -387,8 +401,9 @@
     </div>
 
     <!-- Presentations -->
-    <div class="panel" role="tabpanel" id="tab-presentations" aria-labelledby="btn-presentations" tabindex="0" hidden>
-      <h3 class="panel__head">Peer-reviewed conference presentations</h3>
+    <div class="pubgroup reveal" id="pubs-presentations">
+      <h3 class="pubgroup__title">Presentations</h3>
+      <h4 class="panel__head">Peer-reviewed conference presentations</h4>
       <ol class="pubs pubs--tight" id="presList" data-collapse="6">
         <li class="pub"><span class="pub__year">2026</span><div class="pub__body"><p><strong>Jang, Y.</strong>, &amp; Bailes, L. Title II in name only: The gap between Title II intent and district practice. APPAM. <span class="pub__tag">Submitted</span></p></div></li>
         <li class="pub"><span class="pub__year">2026</span><div class="pub__body"><p><strong>Jang, Y.</strong>, &amp; Bailes, L. Formula funding, local discretion, and implementation gaps: A mixed-methods study of Title II, Part A across diverse LEA types. Paper presentation, SREE Annual Conference, Baltimore, MD. <span class="pub__tag">Presenting author</span></p></div></li>
@@ -412,7 +427,7 @@
       </ol>
       <button class="more" id="presMore" type="button" aria-expanded="false" aria-controls="presList"></button>
 
-      <h3 class="panel__head">Invited &amp; practitioner-focused</h3>
+      <h4 class="panel__head">Invited &amp; practitioner-focused</h4>
       <ol class="pubs pubs--tight">
         <li class="pub"><span class="pub__year">2026</span><div class="pub__body"><p>Bailes, L., &amp; <strong>Jang, Y.</strong> (June). Title II expenditure: A mixed-methods inquiry into districts' decision-making. 24th Policy and Practice Institute, Delaware's Conference on Public Education, Dover, DE.</p></div></li>
         <li class="pub"><span class="pub__year">2026</span><div class="pub__body"><p><strong>Jang, Y.</strong> (April). Title II expenditure: A mixed-methods inquiry into districts' decision-making. Marion H. Steele Research Symposium, Newark, DE. <span class="pub__tag">Presenting author</span></p></div></li>
