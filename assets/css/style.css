@@ -595,16 +595,16 @@ a{ color:inherit; }
 .card__title{
   font-family:var(--serif);
   font-weight:400;
-  font-size:1.36rem;
-  line-height:1.24;
+  font-size:1.12rem;
+  line-height:1.28;
   margin:0 0 6px;
 }
 .card__role{
-  margin:0 0 14px;
-  font-size:.85rem;
+  margin:0 0 12px;
+  font-size:.8rem;
   color:var(--accent);
 }
-.card p:last-child{ margin:0; font-size:.945rem; color:var(--ink-soft); }
+.card p:last-child{ margin:0; font-size:.86rem; line-height:1.5; color:var(--ink-soft); }
 
 /* ---------------------------------------------------------- HONORS / SERVICE LISTS */
 
