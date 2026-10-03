@@ -187,6 +187,11 @@ main{ padding-block:40px 64px; }
   margin-left:8px;
 }
 .sec__note{ margin:16px 0 0; color:var(--muted); font-size:.92rem; }
+/* the first section on a page that opens with a lede sits right under it */
+.page__lede + .sec{ margin-top:0; }
+
+/* the memberships paragraph on the awards page */
+.members{ margin:0; max-width:70ch; line-height:1.8; }
 
 /* a sub-heading inside a section, for status groups on the publications page */
 .sub{
