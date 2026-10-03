@@ -294,6 +294,8 @@ main{ padding-block:40px 64px; }
   border-bottom-color:var(--accent);
 }
 .panel[hidden]{ display:none; }
+/* on a page with no lede, the tab row needs its own distance from the title */
+.page__title + .tabs{ margin-top:18px; }
 
 /* ---------------------------------------------------------- PUBLICATIONS */
 
