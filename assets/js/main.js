@@ -1,19 +1,12 @@
-/* Yubin Jang — site behaviour. Vanilla JS, no dependencies. */
+/* Yubin Jang, site behaviour. Vanilla JS, no dependencies.
+   Everything on the pages works without this file. It only adds the mobile
+   menu, the "show all" control on long lists, and the tabs on /resources. */
 (function () {
   'use strict';
 
   /* ---------- footer year ---------- */
   var yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
-
-  /* ---------- headshot fallback, backstop ----------
-     The primary fallback is the inline onerror in index.html, which cannot miss the
-     event. This only catches an image that already failed before this script ran. */
-  var shot = document.getElementById('headshot');
-  if (shot && shot.complete && shot.naturalWidth === 0 && !/placeholder/.test(shot.src)) {
-    shot.src = 'assets/img/placeholder.svg';
-    shot.alt = 'Placeholder portrait. Replace assets/img/headshot.jpg with your photo.';
-  }
 
   /* ---------- mobile menu ---------- */
   var toggle = document.getElementById('navToggle');
@@ -38,69 +31,13 @@
     });
   }
 
-  /* ---------- nav shadow once scrolled ---------- */
-  var nav = document.getElementById('nav');
-  function onScroll() {
-    if (nav) nav.classList.toggle('is-stuck', window.scrollY > 12);
-  }
-  onScroll();
-  window.addEventListener('scroll', onScroll, { passive: true });
-
-  /* ---------- scroll spy ---------- */
-  var navAnchors = Array.prototype.slice.call(
-    document.querySelectorAll('.nav__links a[href^="#"]')
-  );
-  var sections = navAnchors
-    .map(function (a) { return document.querySelector(a.getAttribute('href')); })
-    .filter(Boolean);
-
-  if ('IntersectionObserver' in window && sections.length) {
-    var spy = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (!entry.isIntersecting) return;
-          navAnchors.forEach(function (a) {
-            a.classList.toggle(
-              'is-current',
-              a.getAttribute('href') === '#' + entry.target.id
-            );
-          });
-        });
-      },
-      { rootMargin: '-45% 0px -50% 0px', threshold: 0 }
-    );
-    sections.forEach(function (s) { spy.observe(s); });
-  }
-
-  /* ---------- reveal on scroll ---------- */
-  var reveals = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  if (reduce || !('IntersectionObserver' in window)) {
-    reveals.forEach(function (el) { el.classList.add('is-in'); });
-  } else {
-    var io = new IntersectionObserver(
-      function (entries, obs) {
-        entries.forEach(function (entry) {
-          if (!entry.isIntersecting) return;
-          entry.target.classList.add('is-in');
-          obs.unobserve(entry.target);
-        });
-      },
-      { rootMargin: '0px 0px -8% 0px', threshold: 0.06 }
-    );
-    reveals.forEach(function (el) { io.observe(el); });
-  }
-
   /* ---------- collapse long lists ----------
      Everything stays in the DOM. Only the display is trimmed, so the full list
-     is still there for search engines and for anyone without JS. */
-  Array.prototype.slice.call(document.querySelectorAll('ol[data-collapse]')).forEach(function (list) {
+     is still there for search engines, for print, and for anyone without JS. */
+  Array.prototype.slice.call(document.querySelectorAll('[data-collapse]')).forEach(function (list) {
     var keep = parseInt(list.getAttribute('data-collapse'), 10) || 6;
     var items = Array.prototype.slice.call(list.querySelectorAll('.pub'));
-    var btn = document.getElementById(list.id + 'More') ||
-              (list.nextElementSibling && list.nextElementSibling.classList.contains('more')
-                ? list.nextElementSibling : null);
+    var btn = document.getElementById(list.id + 'More');
     if (!btn || items.length <= keep) return;
 
     var extra = items.slice(keep);
@@ -118,10 +55,7 @@
     });
   });
 
-  /* ---------- tab panels ----------
-     Only /resources uses these now. The publication list on the home page was
-     flattened into always-visible groups, so browser find and print reach all
-     of it. Leave this in place while the resources page still has tabs. */
+  /* ---------- tab panels (resources page) ---------- */
   var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
 
   function selectTab(tab) {
@@ -130,15 +64,8 @@
       var active = t === tab;
       t.classList.toggle('is-active', active);
       t.setAttribute('aria-selected', active ? 'true' : 'false');
-      if (panel) {
-        panel.hidden = !active;
-        panel.classList.toggle('is-active', active);
-      }
+      if (panel) panel.hidden = !active;
     });
-    // newly shown content should not stay invisible behind the reveal styles
-    document
-      .querySelectorAll('.panel:not([hidden]) .reveal')
-      .forEach(function (el) { el.classList.add('is-in'); });
   }
 
   tabs.forEach(function (tab, i) {

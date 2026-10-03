@@ -10,19 +10,20 @@ Live at **[yubinjang.github.io](https://yubinjang.github.io)**
 Plain HTML, CSS, and vanilla JavaScript. No build step, no dependencies, no framework. Served
 directly by GitHub Pages from `main`.
 
-Type is [Spectral](https://fonts.google.com/specimen/Spectral) and
-[IBM Plex Sans](https://fonts.google.com/specimen/IBM+Plex+Sans).
+Type is [Roboto](https://fonts.google.com/specimen/Roboto).
 
 ## Structure
 
 ```
-├── index.html          the single-page site
-├── resources/          /resources, a tabbed list of links for other researchers
+├── index.html          about: who, education, research directions, selected awards
+├── publications/       articles, chapters, reports, and presentations, by type and status
+├── teaching/           courses taught, guest lectures, and mentoring
+├── resources/          a tabbed list of links for other researchers
 ├── assets/
 │   ├── css/style.css   design tokens are the custom properties at the top
-│   ├── js/main.js      nav, scroll spy, reveal, tabs
+│   ├── js/main.js      mobile menu, "show all" on long lists, tabs
 │   └── img/
-├── cv/                 CV as PDF
+├── cv/                 CV and resume as PDF
 └── .nojekyll           serve files as-is, no Jekyll processing
 ```
 
@@ -36,6 +37,5 @@ Then open `http://localhost:8000`.
 
 ## Notes
 
-Colors, spacing, and the type scale are CSS custom properties at the top of `assets/css/style.css`,
-so the whole palette changes from one block. The page is responsive, works without JavaScript,
-and its text clears WCAG AA contrast.
+Colors, spacing, and the type scale are CSS custom properties at the top of `assets/css/style.css`.
+Every page works without JavaScript, and the text clears WCAG AA contrast.

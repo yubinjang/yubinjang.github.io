@@ -1,36 +1,33 @@
 /* ============================================================
-   Yubin Jang — personal academic site
-   Single-page scroll. No build step, no dependencies.
+   Yubin Jang, personal academic site
+   Plain HTML and CSS, no build step. Five pages that share this file.
+
+   Design follows rules/design-brief.md in the wiki (saved 2026-08-12):
+   white page, one teal accent for links and active nav, hairline
+   separation, Roboto, no shadows, no gradients, no pills, no emoji.
    ============================================================ */
 
 :root{
-  --bg:        #FBFAF6;
-  --bg-alt:    #EFEEE6;
-  --ink:       #191C18;
-  --ink-soft:  #3F4740;
-  /* dark enough to clear WCAG AA on --bg-alt. `muted` is not purely decorative,
-     it carries role titles and funding amounts in the honors lists. */
-  --muted:     #696C64;
-  --rule:      #DFE0D5;
-  --accent:    #2F5741;
-  --accent-lt: #5C8770;
+  --bg:      #fff;
+  --ink:     #212529;
+  --muted:   #6c757d;
+  --accent:  #2f8f83;
+  --hair:    #e3e7ea;
+  --border:  #ced4da;
 
-  --serif: "Spectral", Georgia, "Times New Roman", serif;
-  --sans:  "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --sans: "Roboto", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
 
-  --wrap: 1120px;
-  --nav-h: 74px;
+  --wrap:  800px;
+  --gutter: 20px;
+  --nav-h: 56px;
 }
 
 *,*::before,*::after{ box-sizing:border-box; }
 
 html{
-  /* the fluid size belongs here, not on body. Every rem in this file resolves
-     against the root, so putting it on body left all rem-sized content stuck
-     at the 16px default while body text alone grew. */
-  font-size:clamp(17px, 0.42vw + 15.4px, 18.5px);
+  font-size:15px;
   scroll-behavior:smooth;
-  scroll-padding-top: calc(var(--nav-h) + 16px);
+  scroll-padding-top:calc(var(--nav-h) + 16px);
   -webkit-text-size-adjust:100%;
 }
 
@@ -39,707 +36,344 @@ body{
   background:var(--bg);
   color:var(--ink);
   font-family:var(--sans);
-  font-size:1rem;
   font-weight:400;
-  line-height:1.65;
+  line-height:1.6;
   -webkit-font-smoothing:antialiased;
 }
 
 img{ max-width:100%; display:block; }
-a{ color:inherit; }
+
+a{ color:var(--accent); text-decoration:none; }
+a:hover,
+a:focus-visible{ text-decoration:underline; text-underline-offset:2px; }
+
+strong{ font-weight:500; }
+cite{ font-style:italic; }
+
+:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
 
 .wrap{
   width:100%;
   max-width:var(--wrap);
   margin-inline:auto;
-  padding-inline:clamp(20px, 5vw, 48px);
+  padding-inline:var(--gutter);
 }
-
-.dot{ color:var(--accent-lt); font-size:.72em; vertical-align:.15em; }
-
-/* inline links inside body copy and lists. Underlined rather than coloured so a
-   sentence with several of them does not turn into a wall of accent. */
-.il{
-  color:inherit;
-  text-decoration:none;
-  border-bottom:1px solid color-mix(in srgb, var(--accent) 32%, transparent);
-  transition:color .18s ease, border-color .18s ease;
-}
-.il:hover,
-.il:focus-visible{ color:var(--accent); border-bottom-color:var(--accent); }
 
 .skip-link{
   position:absolute; left:-9999px; top:0;
-  background:var(--ink); color:var(--bg);
-  padding:10px 16px; z-index:100;
+  background:var(--ink); color:#fff;
+  padding:8px 14px; z-index:100;
 }
 .skip-link:focus{ left:8px; top:8px; }
 
-:focus-visible{
-  outline:2px solid var(--accent);
-  outline-offset:3px;
-}
+/* the page's main column. The nav and footer are outside it. */
+main{ padding-block:40px 64px; }
 
 /* ---------------------------------------------------------- NAV */
 
 .nav{
   position:sticky; top:0; z-index:50;
-  background:color-mix(in srgb, var(--bg) 88%, transparent);
-  backdrop-filter:blur(12px);
-  -webkit-backdrop-filter:blur(12px);
-  border-bottom:1px solid transparent;
-  transition:border-color .25s ease, background .25s ease;
+  background:var(--bg);
+  border-bottom:1px solid var(--hair);
 }
-.nav.is-stuck{ border-bottom-color:var(--rule); }
-
 .nav__inner{
   max-width:var(--wrap);
   margin-inline:auto;
-  padding-inline:clamp(20px, 5vw, 48px);
+  padding-inline:var(--gutter);
   height:var(--nav-h);
   display:flex; align-items:center; justify-content:space-between;
   gap:24px;
 }
 
+/* "Yubin Jang" with the first name bold, the light-with-bold-key-word pattern
+   from the brief */
 .nav__brand{
-  font-family:var(--serif);
-  font-size:1.32rem;
-  letter-spacing:.01em;
-  text-decoration:none;
-  white-space:nowrap;
-}
-
-.nav__links{
-  display:flex; align-items:center; gap:clamp(14px, 1.6vw, 26px);
-}
-.nav__links a{
-  font-size:.845rem;
-  letter-spacing:.02em;
-  color:var(--ink-soft);
-  text-decoration:none;
-  padding:4px 0;
-  border-bottom:1px solid transparent;
-  transition:color .18s ease, border-color .18s ease;
-  white-space:nowrap;
-}
-.nav__links a:hover{ color:var(--accent); }
-.nav__links a.is-current{
+  font-size:1.08rem;
+  font-weight:300;
   color:var(--ink);
-  border-bottom-color:var(--accent);
+  white-space:nowrap;
 }
-/* Links that leave the page you are on, rather than jumping within it. Set in
-   pills so they read as destinations and not as one more section in the run of
-   anchors beside them. */
-.nav__out{
-  border:1px solid var(--rule) !important;
-  border-radius:999px;
-  padding:5px 15px !important;
-  background:transparent;
+.nav__brand strong{ font-weight:700; }
+.nav__brand:hover{ text-decoration:none; color:var(--accent); }
+
+.nav__links{ display:flex; align-items:center; gap:clamp(14px, 2.4vw, 24px); }
+.nav__links a{
+  font-size:.95rem;
+  color:var(--ink);
+  padding:4px 0;
+  white-space:nowrap;
 }
-.nav__out:hover{
-  border-color:var(--accent) !important;
-  color:var(--accent);
-}
-/* the plain anchors mark the current section with an underline, which a pill
-   has no room for, so it takes the accent on its whole border instead */
-.nav__links a.nav__out.is-current{
-  border-color:var(--accent) !important;
-  color:var(--accent);
-}
+.nav__links a:hover{ color:var(--accent); text-decoration:none; }
+.nav__links a.is-current{ color:var(--accent); font-weight:500; }
 
 .nav__toggle{
   display:none;
   flex-direction:column; justify-content:center; gap:5px;
-  width:40px; height:36px;
+  width:38px; height:34px;
   padding:0; margin:0;
-  background:none; border:1px solid var(--rule); border-radius:8px;
+  background:none; border:1px solid var(--border); border-radius:6px;
   cursor:pointer;
 }
 .nav__toggle span{
-  display:block; height:1.5px; width:18px; margin-inline:auto;
+  display:block; height:1.5px; width:16px; margin-inline:auto;
   background:var(--ink);
-  transition:transform .22s ease, opacity .22s ease;
+  transition:transform .2s ease, opacity .2s ease;
 }
 .nav__toggle[aria-expanded="true"] span:nth-child(1){ transform:translateY(6.5px) rotate(45deg); }
 .nav__toggle[aria-expanded="true"] span:nth-child(2){ opacity:0; }
 .nav__toggle[aria-expanded="true"] span:nth-child(3){ transform:translateY(-6.5px) rotate(-45deg); }
 
-/* ---------------------------------------------------------- HERO */
+/* ---------------------------------------------------------- PAGE HEAD */
 
-.hero{
-  padding-block:clamp(56px, 9vw, 108px) clamp(64px, 10vw, 128px);
-  border-bottom:1px solid var(--rule);
+/* every page opens with a title at weight 300. The About page bolds the first
+   name; the other pages are one word and stay light. */
+.page__title{
+  font-size:2.15rem;
+  font-weight:300;
+  line-height:1.2;
+  letter-spacing:-.01em;
+  margin:0 0 6px;
+}
+.page__title strong{ font-weight:700; }
+.page__lede{
+  margin:0 0 30px;
+  color:var(--muted);
+  max-width:62ch;
 }
 
-.hero__grid{
+/* ---------------------------------------------------------- ABOUT */
+
+.about{
   display:grid;
-  grid-template-columns:minmax(0,1.35fr) minmax(0,.85fr);
-  gap:clamp(32px, 6vw, 76px);
-  /* stretch, so the portrait is exactly as tall as the text beside it and the
-     two together read as one rectangle */
-  align-items:stretch;
+  grid-template-columns:minmax(0,1fr) 190px;
+  gap:40px;
+  align-items:start;
 }
-
-/* every line in the hero wraps to the same measure, so the block reads as one
-   rectangle instead of three differently-shaped paragraphs */
-.hero__text{ max-width:52ch; }
-
-.hero__title{
-  font-family:var(--serif);
-  font-weight:400;
-  /* Spectral sets wider than the previous display face, so the headline needs a
-     smaller step to keep the same number of lines */
-  font-size:clamp(2.3rem, 5.4vw, 4.1rem);
-  line-height:1.08;
-  letter-spacing:-.018em;
-  margin:0 0 26px;
-  text-wrap:balance;
+.about__name{ margin-bottom:4px; }
+.about__role{ margin:0 0 14px; }
+.about__contact{
+  margin:0 0 22px;
+  font-size:.92rem;
+  color:var(--muted);
 }
+.about__contact a{ white-space:nowrap; }
+.about__text p{ margin:0 0 1em; max-width:62ch; }
+.about__text p:last-child{ margin-bottom:0; }
 
-.hero__role{
-  font-family:var(--serif);
-  font-size:clamp(1.12rem, 1.7vw, 1.4rem);
-  line-height:1.42;
-  color:var(--ink-soft);
-  margin:0 0 20px;
-}
-
-.hero__lede{
-  margin:0;
-  font-size:1.06rem;
-  color:var(--ink-soft);
-}
-
-/* right column: portrait on top, the two buttons beneath it. The portrait
-   flexes so the column ends level with the text column. */
-.hero__side{
-  display:flex;
-  flex-direction:column;
-  gap:20px;
-  width:100%;
-  max-width:400px;
-  justify-self:end;
-}
-.hero__actions{ display:flex; flex-wrap:wrap; gap:12px; }
-
-.btn{
-  display:inline-block;
-  padding:12px 26px;
-  border-radius:999px;
-  font-size:.87rem;
-  letter-spacing:.02em;
-  text-decoration:none;
-  transition:background .2s ease, color .2s ease, border-color .2s ease, transform .2s ease;
-}
-.btn--solid{ background:var(--ink); color:var(--bg); border:1px solid var(--ink); }
-.btn--solid:hover{ background:var(--accent); border-color:var(--accent); transform:translateY(-1px); }
-.btn--ghost{ border:1px solid var(--rule); color:var(--ink); }
-.btn--ghost:hover{ border-color:var(--accent); color:var(--accent); transform:translateY(-1px); }
-
-.hero__portrait{ margin:0; flex:1 1 auto; min-height:260px; }
-.hero__portrait img{
-  width:100%;
-  height:100%;
+.portrait{
+  width:190px; height:190px;
+  border-radius:50%;
   object-fit:cover;
-  /* the crop bites into the sides as the frame gets taller, so bias upward to
-     keep the face clear of it */
-  object-position:50% 18%;
-  border-radius:4px;
-  background:var(--bg-alt);
-  filter:saturate(.92);
+  border:1px solid var(--hair);
+  background:var(--bg);
+  justify-self:end;
 }
 
 /* ---------------------------------------------------------- SECTIONS */
 
-.section{ padding-block:clamp(64px, 9vw, 118px); }
-.section--alt{ background:var(--bg-alt); }
-/* follows a .pagehead, which already carries the top of the page, so the full
-   section padding would leave the controls stranded */
-.section--tight{ padding-top:clamp(36px, 4.5vw, 58px); }
-
-.section__title{
-  font-family:var(--serif);
-  font-weight:400;
-  font-size:clamp(2rem, 4.2vw, 3.15rem);
-  line-height:1.1;
-  letter-spacing:-.012em;
-  margin:0 0 22px;
-}
-
-/* two-column layout used by About / Awards / Service */
-.cols{
-  display:grid;
-  grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);
-  gap:clamp(32px, 5.5vw, 72px);
-  align-items:start;
-}
-
-.prose p{ margin:0 0 1.15em; max-width:64ch; }
-.prose p:last-child{ margin-bottom:0; }
-
-.cols__side{
-  border-top:1px solid var(--rule);
-  padding-top:26px;
-}
-
-/* two lists of equal standing, rather than a main column and a sidebar */
-.cols--even{ grid-template-columns:repeat(2, minmax(0,1fr)); }
-
-/* the three reference blocks under About. They were cramped in the narrow
-   sidebar, so they run full width in their own row instead. */
-.factbar{
-  display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
-  gap:clamp(26px, 3.5vw, 52px);
-  margin-top:clamp(40px, 5vw, 68px);
-  padding-top:28px;
-  border-top:1px solid var(--rule);
-}
-.factbar > div > .side__head{ margin-top:0; }
-
-.side__head,
-.list__head{
-  font-size:.74rem;
-  font-weight:600;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  color:var(--muted);
-  margin:0 0 14px;
-}
-.side__head:not(:first-child){ margin-top:30px; }
-
-.list__head--accent{ color:var(--accent); }
-
-.side__note{
-  margin:0 0 .7em;
-  font-size:.92rem;
-  color:var(--ink-soft);
-}
-
-.timeline{ list-style:none; margin:0; padding:0; }
-.timeline li{
-  display:grid;
-  grid-template-columns:92px 1fr;
-  gap:14px;
-  padding-block:12px;
-  border-bottom:1px solid var(--rule);
-  font-size:.92rem;
-}
-.timeline li:last-child{ border-bottom:0; }
-.timeline__when{
-  font-size:.78rem;
-  letter-spacing:.04em;
-  color:var(--muted);
-  padding-top:.22em;
-}
-.timeline__what strong{ font-weight:600; }
-.timeline__what em{ color:var(--muted); font-size:.9em; }
-
-/* ---------------------------------------------------------- RESEARCH INTERESTS */
-
-.tags{
-  list-style:none;
-  margin:0 0 30px;
-  padding:0;
-  display:flex;
-  flex-wrap:wrap;
-  gap:7px;
-}
-.tags li{
-  font-size:.75rem;
-  color:var(--ink-soft);
-  background:var(--bg);
-  border:1px solid var(--rule);
-  border-radius:999px;
-  padding:6px 13px;
-  transition:color .18s ease, border-color .18s ease, background-color .18s ease;
-}
-@media (hover:hover){
-  .tags li:hover{
-    color:var(--accent);
-    border-color:var(--accent);
-    background:color-mix(in srgb, var(--accent) 6%, var(--bg));
-  }
-}
-
-/* ---------------------------------------------------------- RESEARCH STRANDS */
-
-.strands{
-  display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(266px, 1fr));
-  gap:clamp(26px, 3.6vw, 46px);
-}
-
-.strand{
-  border-top:2px solid var(--ink);
-  padding-top:22px;
-}
-.strand__num{
-  font-size:.78rem;
+.sec{ margin-top:44px; }
+.sec__title{
+  font-size:1.3rem;
   font-weight:500;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  color:var(--muted);
-  margin:0 0 10px;
-}
-.strand__title{
-  font-family:var(--serif);
-  font-weight:400;
-  font-size:1.5rem;
-  line-height:1.2;
+  line-height:1.3;
   margin:0 0 14px;
+  padding-bottom:8px;
+  border-bottom:1px solid var(--hair);
 }
-.strand p{ margin:0 0 16px; font-size:.965rem; color:var(--ink-soft); }
+.sec__title small{
+  font-size:.85rem;
+  font-weight:400;
+  color:var(--muted);
+  margin-left:8px;
+}
+.sec__note{ margin:16px 0 0; color:var(--muted); font-size:.92rem; }
 
-.strand__meta{
-  list-style:none; margin:0; padding:0;
-  border-top:1px solid var(--rule);
-  padding-top:14px;
+/* a sub-heading inside a section, for status groups on the publications page */
+.sub{
+  font-size:1rem;
+  font-weight:500;
+  margin:22px 0 8px;
 }
-/* these bullets now carry the strand on their own, so they read a step up
-   from the incidental-metadata size they had under a paragraph */
-.strand__meta li{
+.sub:first-of-type{ margin-top:0; }
+.sub small{ font-weight:400; color:var(--muted); font-style:italic; }
+
+/* ---------------------------------------------------------- ROWS
+   A dated list: year on the left, text on the right, hairlines between.
+   Used for Education and Selected awards on the home page. */
+
+.rows{ list-style:none; margin:0; padding:0; }
+.rows li{
+  display:grid;
+  grid-template-columns:104px minmax(0,1fr);
+  gap:16px;
+  padding:12px 0;
+  border-top:1px solid var(--hair);
+}
+.rows li:first-child{ border-top:0; padding-top:2px; }
+.rows__when{
+  color:var(--muted);
   font-size:.9rem;
-  color:var(--ink-soft);
-  padding-block:5px;
+  padding-top:.12em;
+  white-space:nowrap;
+}
+.rows__what strong{ font-weight:500; }
+.rows__note{
+  display:block;
+  color:var(--muted);
+  font-size:.92rem;
+}
+.rows__text{
+  display:block;
+  margin-top:7px;
+  max-width:60ch;
+}
+.rows__text + .rows__text{ margin-top:5px; }
+
+/* ---------------------------------------------------------- RESEARCH DIRECTIONS */
+
+.dirs{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:18px;
+}
+.dir h3{
+  font-size:1rem;
+  font-weight:500;
+  line-height:1.35;
+  margin:0 0 4px;
+}
+.dir p{ margin:0; font-size:.95rem; }
+.dir__meta{
+  display:block;
+  margin-top:5px;
+  font-size:.88rem;
+  color:var(--muted);
 }
 
-/* ---------------------------------------------------------- PUBLICATIONS */
+/* ---------------------------------------------------------- IN-PAGE LINKS
+   A row of lowercase links that jump down a long page. These are not tabs,
+   nothing is hidden, so they carry no active state. */
 
-/* Tabs now belong to /resources only. The publication list below is flat. */
+.jump{
+  display:flex; flex-wrap:wrap; gap:6px 22px;
+  margin:0 0 28px;
+  padding-bottom:12px;
+  border-bottom:1px solid var(--hair);
+  font-size:.95rem;
+}
+
+/* ---------------------------------------------------------- TABS
+   The resources page. Lowercase links; the active one is teal at weight 500
+   with a 2px underline, as the brief specifies. */
+
 .tabs{
-  display:flex; flex-wrap:wrap; gap:8px;
-  margin-bottom:clamp(30px, 4vw, 46px);
-  border-bottom:1px solid var(--rule);
-  padding-bottom:14px;
+  display:flex; flex-wrap:wrap; gap:0 22px;
+  margin:0 0 26px;
+  border-bottom:1px solid var(--hair);
 }
 .tab{
   font-family:var(--sans);
-  font-size:.85rem;
-  letter-spacing:.02em;
-  color:var(--muted);
+  font-size:.95rem;
+  color:var(--ink);
   background:none;
-  border:1px solid transparent;
-  border-radius:999px;
-  padding:7px 17px;
+  border:0;
+  border-bottom:2px solid transparent;
+  margin-bottom:-1px;
+  padding:8px 0 9px;
   cursor:pointer;
-  transition:color .18s ease, background .18s ease, border-color .18s ease;
 }
-.tab:hover{ color:var(--ink); border-color:var(--rule); }
+.tab:hover{ color:var(--accent); }
 .tab.is-active{
-  color:var(--bg);
-  background:var(--ink);
-  border-color:var(--ink);
+  color:var(--accent);
+  font-weight:500;
+  border-bottom-color:var(--accent);
 }
-
-.panel{ animation:fade .32s ease both; }
 .panel[hidden]{ display:none; }
-@keyframes fade{ from{ opacity:0; transform:translateY(6px);} to{ opacity:1; transform:none;} }
 
-.pubs__intro{
-  max-width:62ch;
-  margin:0 0 clamp(22px, 3vw, 32px);
-  color:var(--ink-soft);
-  font-size:1rem;
-}
-
-/* Every group stays on the page, so browser find and a printed copy both reach
-   the whole list. These are shortcuts down the page, not tabs that hide things. */
-.jump{
-  display:flex; flex-wrap:wrap; gap:8px;
-  margin-bottom:clamp(30px, 4vw, 46px);
-  border-bottom:1px solid var(--rule);
-  padding-bottom:14px;
-}
-.jump__link{
-  font-family:var(--sans);
-  font-size:.85rem;
-  letter-spacing:.02em;
-  color:var(--muted);
-  text-decoration:none;
-  border:1px solid var(--rule);
-  border-radius:999px;
-  padding:7px 17px;
-  transition:color .18s ease, background .18s ease, border-color .18s ease;
-}
-.jump__link:hover,
-.jump__link:focus-visible{
-  color:var(--bg);
-  background:var(--ink);
-  border-color:var(--ink);
-}
+/* ---------------------------------------------------------- PUBLICATIONS */
 
 .pubgroup{ scroll-margin-top:calc(var(--nav-h) + 18px); }
-.pubgroup + .pubgroup{ margin-top:clamp(38px, 5vw, 60px); }
+.pubgroup + .pubgroup{ margin-top:40px; }
 
-.pubgroup__title{
-  font-family:var(--serif);
-  font-weight:400;
-  font-size:clamp(1.28rem, 2.1vw, 1.55rem);
-  letter-spacing:-.01em;
-  color:var(--ink);
-  margin:0 0 14px;
-  padding-bottom:0;
-  border-bottom:0;
-}
-
-.panel__head{
-  font-family:var(--serif);
-  font-size:1.02rem;
-  font-weight:500;
-  letter-spacing:0;
-  color:var(--ink-soft);
-  margin:26px 0 10px;
-  padding-bottom:0;
-  border-bottom:0;
-}
-.panel__head:first-child{ margin-top:0; }
-.pubgroup__title + .panel__head{ margin-top:22px; }
-.panel__head-note{
-  color:var(--muted);
-  font-weight:400;
-  font-style:italic;
-}
-
-/* The list follows sanfordstudent.github.io/mywork: plain bullets, no year column,
-   no rule between entries, and every resource link inline at the end of the
-   citation. The year lives inside the citation now, which is where APA puts it. */
-.pubs{
-  list-style:disc;
-  margin:0;
-  padding-left:1.15em;
-}
-.pubs li::marker{ color:var(--rule); }
-
+.pubs{ list-style:none; margin:0; padding:0; }
 .pub{
-  padding-block:0;
-  margin-bottom:.7em;
-  border-bottom:0;
+  padding:9px 0;
+  border-top:1px solid var(--hair);
 }
-.pub:last-child{ margin-bottom:0; }
-.pubs--tight .pub{ margin-bottom:.55em; }
-
-.pub__body p{ margin:0; font-size:.955rem; line-height:1.62; }
-.pub__body strong{ font-weight:600; }
-
-/* Sibling links read as one run, separated the way a citation footer is. */
-.pub__link{
-  color:var(--accent);
-  text-decoration:none;
-  border-bottom:1px solid color-mix(in srgb, var(--accent) 32%, transparent);
-}
-.pub__link:hover{ border-bottom-color:var(--accent); }
-.pub__link + .pub__link{ margin-left:.55em; }
-.pub__link + .pub__link::before{
-  content:"|";
-  margin-right:.55em;
-  color:var(--rule);
-  border-bottom:0;
-}
-
+.pub:first-child{ border-top:0; padding-top:0; }
+.pub p{ margin:0; font-size:.95rem; line-height:1.55; }
+.pub strong{ font-weight:500; }
 .pub.is-hidden{ display:none; }
 
-.more{
-  display:none;
-  font-family:var(--sans);
-  font-size:.82rem;
-  letter-spacing:.02em;
-  color:var(--ink-soft);
-  background:none;
-  border:1px solid var(--rule);
-  border-radius:999px;
-  padding:8px 18px;
-  margin-top:16px;
-  cursor:pointer;
-  transition:color .18s ease, border-color .18s ease, background-color .18s ease;
+/* a resource link at the end of a citation, drawn as a small ghost button */
+.pub__link{
+  display:inline-block;
+  margin-left:6px;
+  padding:0 7px;
+  font-size:.78rem;
+  font-weight:500;
+  line-height:1.6;
+  color:var(--ink);
+  border:1px solid var(--border);
+  border-radius:4px;
+  vertical-align:.08em;
 }
-.more.is-ready{ display:inline-block; }
-.more:hover{
-  color:var(--accent);
-  border-color:var(--accent);
-  background:color-mix(in srgb, var(--accent) 6%, transparent);
-}
+.pub__link:hover{ color:var(--accent); border-color:var(--accent); text-decoration:none; }
 
-/* Notes like "Presenting author" are real information, so they stay, but as
-   quiet inline text rather than a pill that would fight the plain list. */
-.pub__tag{
-  font-size:.83rem;
-  font-style:italic;
-  color:var(--muted);
-}
+/* "Presenting author" and similar notes stay as quiet inline text */
+.pub__tag{ font-size:.86rem; font-style:italic; color:var(--muted); }
 .pub__tag::before{ content:"["; }
 .pub__tag::after{ content:"]"; }
 
-/* ---------------------------------------------------------- TEACHING CARDS */
+/* ---------------------------------------------------------- BUTTONS */
 
-.cards{
-  display:grid;
-  /* four cards, deliberately 2 x 2 rather than a reflowing auto-fit row */
-  grid-template-columns:repeat(2, minmax(0, 1fr));
-  gap:clamp(14px, 1.8vw, 20px);
-}
-@media (max-width:680px){ .cards{ grid-template-columns:1fr; } }
-.card{
+.btn{
+  display:inline-block;
+  padding:6px 14px;
+  font-family:var(--sans);
+  font-size:.9rem;
+  font-weight:500;
+  line-height:1.5;
+  color:var(--ink);
   background:var(--bg);
-  border:1px solid var(--rule);
+  border:1px solid var(--border);
   border-radius:6px;
-  padding:clamp(18px, 2vw, 26px);
+  cursor:pointer;
 }
-.card__where{
-  margin:0 0 8px;
-  font-size:.68rem;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  color:var(--muted);
-}
-.card__title{
-  font-family:var(--serif);
-  font-weight:400;
-  font-size:1rem;
-  line-height:1.3;
-  margin:0 0 5px;
-}
-.card__role{
-  margin:0 0 10px;
-  font-size:.76rem;
-  color:var(--accent);
-}
-.card p:last-child{ margin:0; font-size:.8rem; line-height:1.5; color:var(--ink-soft); }
+.btn:hover{ color:var(--accent); border-color:var(--accent); text-decoration:none; }
+.btn--primary{ color:#fff; background:var(--accent); border-color:var(--accent); }
+.btn--primary:hover{ color:#fff; background:#27786e; border-color:#27786e; }
 
-/* ---------------------------------------------------------- HONORS / SERVICE LISTS */
+.more{ display:none; margin-top:14px; }
+.more.is-ready{ display:inline-block; }
 
-.honors{ list-style:none; margin:0 0 8px; padding:0; }
-.honors li{
-  display:grid;
-  grid-template-columns:96px 1fr;
-  gap:16px;
-  padding-block:15px;
-  border-bottom:1px solid var(--rule);
-}
-.honors li:last-child{ border-bottom:0; }
+/* ---------------------------------------------------------- TEACHING */
 
-.honors__year{
-  font-size:.78rem;
-  letter-spacing:.04em;
-  color:var(--muted);
-  padding-top:.25em;
-  white-space:nowrap;
+.course{
+  padding:18px 0;
+  border-top:1px solid var(--hair);
 }
-.honors__what strong{ font-weight:600; }
-.honors__note{ color:var(--muted); font-size:.87em; }
-
-.memberships{
-  margin-top:clamp(36px, 5vw, 58px);
-  border-top:1px solid var(--rule);
-  padding-top:26px;
-}
-.memberships__list{
-  margin:0;
-  max-width:78ch;
-  font-size:.93rem;
-  color:var(--ink-soft);
-  line-height:2;
-}
-
-/* ---------------------------------------------------------- CONTACT */
-
-.contact{
-  border-top:1px solid var(--rule);
-  text-align:center;
-}
-.contact__title{
-  font-family:var(--serif);
-  font-weight:400;
-  font-size:clamp(2.4rem, 6vw, 4.2rem);
-  line-height:1.06;
-  margin:0 0 22px;
-}
-
-.contact__lede{
-  max-width:58ch;
-  margin:0 auto 34px;
-  color:var(--ink-soft);
-}
-
-.contact__email{ margin:0 0 30px; }
-.contact__email a{
-  font-family:var(--serif);
-  font-size:clamp(1.35rem, 3.2vw, 2rem);
-  text-decoration:none;
-  border-bottom:1px solid var(--rule);
-  padding-bottom:3px;
-  transition:color .2s ease, border-color .2s ease;
-}
-.contact__email a:hover{ color:var(--accent); border-bottom-color:var(--accent); }
-
-.contact__links{
-  list-style:none; margin:0 0 26px; padding:0;
-  display:flex; flex-wrap:wrap; justify-content:center;
-  gap:10px 26px;
-}
-.contact__links a{
-  font-size:.82rem;
-  letter-spacing:.09em;
-  text-transform:uppercase;
-  color:var(--ink-soft);
-  text-decoration:none;
-  border-bottom:1px solid var(--rule);
-  padding-bottom:2px;
-  transition:color .18s ease, border-color .18s ease;
-}
-.contact__links a:hover{ color:var(--accent); border-bottom-color:var(--accent); }
-
-.contact__where{
-  margin:0;
+.course:first-of-type{ border-top:0; padding-top:0; }
+.course__where{
+  margin:0 0 3px;
   font-size:.8rem;
   letter-spacing:.06em;
-  color:var(--muted);
-}
-
-/* ---------------------------------------------------------- SUBPAGE HEAD
-
-   Standalone pages such as /resources open with this instead of the home page
-   hero. The title uses the hero's type scale so the two read as one site. */
-
-.pagehead{
-  padding-block:clamp(46px, 7vw, 88px) clamp(34px, 4.5vw, 56px);
-  border-bottom:1px solid var(--rule);
-}
-
-.pagehead__back{
-  display:inline-block;
-  font-size:.78rem;
-  letter-spacing:.09em;
   text-transform:uppercase;
   color:var(--muted);
-  text-decoration:none;
-  border-bottom:1px solid transparent;
-  margin-bottom:20px;
-  transition:color .18s ease, border-color .18s ease;
 }
-.pagehead__back:hover{ color:var(--accent); border-bottom-color:var(--accent); }
-
-.pagehead__title{
-  font-family:var(--serif);
-  font-weight:400;
-  font-size:clamp(2.3rem, 5.4vw, 4.1rem);
-  line-height:1.08;
-  letter-spacing:-.018em;
-  margin:0 0 22px;
+.course h3{
+  font-size:1.05rem;
+  font-weight:500;
+  line-height:1.35;
+  margin:0 0 2px;
 }
+.course__role{ margin:0 0 8px; font-size:.92rem; color:var(--muted); }
+.course p:last-child{ margin:0; font-size:.95rem; max-width:66ch; }
 
-.pagehead__lede{
-  max-width:62ch;
-  margin:0;
-  font-size:1.06rem;
-  color:var(--ink-soft);
-}
+/* ---------------------------------------------------------- RESOURCES */
 
-/* ---------------------------------------------------------- RESOURCE LISTS */
-
-/* Each resource category is a tab panel. The tab button already names the
-   category on screen, so the panel's own heading is there for screen readers
-   and for the no-JS layout, where the tabs disappear and every panel opens. */
+/* the tab button already names the category on screen, so the panel's own
+   heading is for screen readers and for the no-JS layout */
 .panel__title{
   position:absolute;
   width:1px; height:1px;
@@ -749,138 +383,50 @@ a{ color:inherit; }
   clip-path:inset(50%);
   white-space:nowrap;
 }
+.panel__lede{ max-width:62ch; margin:0 0 22px; color:var(--muted); }
 
-.panel__lede{
-  max-width:62ch;
-  margin:0 0 clamp(26px, 3.5vw, 38px);
-  color:var(--ink-soft);
-}
-
-/* groups sit side by side once there is room for two full-width entries */
 .res-cols{
   display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(330px, 1fr));
-  gap:clamp(28px, 4vw, 58px);
+  grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
+  gap:22px 40px;
   align-items:start;
 }
 .res-group + .res-group,
 .res-group + .res-cols,
-.res-cols + .res-group{ margin-top:clamp(30px, 4vw, 46px); }
-/* side by side already, so the grid gap is the only separation they need */
+.res-cols + .res-group{ margin-top:30px; }
 .res-cols .res-group + .res-group{ margin-top:0; }
 
 .res{ list-style:none; margin:0; padding:0; }
 .res li{
-  padding-block:13px;
-  border-bottom:1px solid var(--rule);
+  padding:9px 0;
+  border-top:1px solid var(--hair);
 }
-.res li:last-child{ border-bottom:0; }
-
+.res li:first-child{ border-top:0; padding-top:0; }
 .res__link,
-.res__title{
-  font-size:.97rem;
-  font-weight:500;
-  line-height:1.45;
-}
-.res__link{
-  color:inherit;
-  text-decoration:none;
-  border-bottom:1px solid color-mix(in srgb, var(--accent) 32%, transparent);
-  transition:color .18s ease, border-color .18s ease;
-}
-.res__link:hover,
-.res__link:focus-visible{ color:var(--accent); border-bottom-color:var(--accent); }
-
-.res__by{
-  display:block;
-  margin-top:3px;
-  font-size:.87rem;
-  color:var(--muted);
-}
+.res__title{ font-size:.95rem; font-weight:500; line-height:1.45; }
+.res__by{ display:block; margin-top:1px; font-size:.88rem; color:var(--muted); }
 
 /* ---------------------------------------------------------- FOOTER */
 
 .foot{
-  border-top:1px solid var(--rule);
-  padding-block:26px;
-  background:var(--bg-alt);
+  border-top:1px solid var(--hair);
+  padding-block:20px;
 }
 .foot__inner{
   display:flex; align-items:center; justify-content:space-between;
-  gap:16px; flex-wrap:wrap;
-}
-.foot p{ margin:0; font-size:.8rem; color:var(--muted); }
-.foot__top{
-  font-size:.8rem;
+  gap:12px 24px; flex-wrap:wrap;
+  font-size:.85rem;
   color:var(--muted);
-  text-decoration:none;
 }
-.foot__top:hover{ color:var(--accent); }
-
-/* ---------------------------------------------------------- HOVER HIGHLIGHT
-
-   Rows light up under the cursor so a long publication or awards list is easier
-   to track across its year column. Scoped to `hover:hover` because on a
-   touchscreen the highlight would stick after a tap with nothing to dismiss it. */
-
-@media (hover:hover){
-  .honors li,
-  .res li,
-  .timeline li{
-    /* pulled out by the same amount it pads, so the tint extends past the text
-       without shifting anything */
-    padding-inline:12px;
-    margin-inline:-12px;
-    border-radius:5px;
-    transition:background-color .18s ease;
-  }
-  .honors li:hover,
-  .res li:hover,
-  .timeline li:hover{
-    background:color-mix(in srgb, var(--accent) 7%, transparent);
-  }
-  .honors li:hover .honors__year,
-  .timeline li:hover .timeline__when{ color:var(--accent); }
-
-  .strand{ transition:border-top-color .2s ease; }
-  .strand:hover{ border-top-color:var(--accent); }
-  .strand:hover .strand__num{ color:var(--accent); }
-
-  .card{ transition:border-color .2s ease, transform .2s ease, box-shadow .2s ease; }
-  .card:hover{
-    border-color:var(--accent-lt);
-    transform:translateY(-2px);
-    box-shadow:0 6px 22px color-mix(in srgb, var(--ink) 7%, transparent);
-  }
-
-  .strand__meta li{ transition:color .18s ease; }
-  .strand__meta li:hover{ color:var(--ink); }
-}
-
-/* ---------------------------------------------------------- REVEAL */
-
-.reveal{
-  opacity:0;
-  transform:translateY(16px);
-  transition:opacity .6s cubic-bezier(.2,.7,.3,1), transform .6s cubic-bezier(.2,.7,.3,1);
-}
-.reveal.is-in{ opacity:1; transform:none; }
+.foot p{ margin:0; }
+.foot a{ color:var(--muted); }
+.foot a:hover{ color:var(--accent); }
 
 /* ---------------------------------------------------------- RESPONSIVE */
 
-@media (max-width:900px){
-  .hero__grid{ grid-template-columns:1fr; }
-  /* display:contents drops the wrapper so the three blocks can be ordered
-     independently in the single-column flow */
-  .hero__side{ display:contents; }
-  .hero__portrait{ order:-1; max-width:290px; justify-self:start; min-height:0; }
-  .hero__portrait img{ height:auto; aspect-ratio:7/10; object-position:50% 50%; }
-  .hero__actions{ order:1; margin-top:8px; }
-  .cols{ grid-template-columns:1fr; }
-  .cols__side{ border-top:1px solid var(--rule); padding-top:26px; }
-}
+@media (max-width:720px){
+  main{ padding-block:28px 48px; }
 
-@media (max-width:900px){
   .nav__toggle{ display:flex; }
   .nav__links{
     position:absolute;
@@ -889,56 +435,36 @@ a{ color:inherit; }
     align-items:flex-start;
     gap:0;
     background:var(--bg);
-    border-bottom:1px solid var(--rule);
-    padding:6px clamp(20px, 5vw, 48px) 18px;
+    border-bottom:1px solid var(--hair);
+    padding:4px var(--gutter) 10px;
     max-height:0;
     overflow:hidden;
     visibility:hidden;
-    transition:max-height .3s ease, padding .3s ease, visibility .3s;
+    transition:max-height .25s ease, visibility .25s;
   }
-  .nav__links.is-open{
-    max-height:70vh;
-    overflow-y:auto;
-    visibility:visible;
-  }
-  .nav__links a{
-    width:100%;
-    padding:11px 0;
-    border-bottom:1px solid var(--rule);
-    font-size:.95rem;
-  }
-  .nav__links a.is-current{ border-bottom-color:var(--rule); color:var(--accent); }
-  /* the drawer is a list of rows, so the pills flatten into rows like the rest
-     and keep the divider that holds the list together */
-  .nav__out{
-    border:0 !important;
-    border-bottom:1px solid var(--rule) !important;
-    border-radius:0;
-    padding:11px 0 !important;
-    color:var(--accent) !important;
-  }
-  .nav__links a:last-child.nav__out{ border-bottom:0 !important; }
-}
+  .nav__links.is-open{ max-height:70vh; overflow-y:auto; visibility:visible; }
+  .nav__links a{ width:100%; padding:10px 0; border-bottom:1px solid var(--hair); }
+  .nav__links a:last-child{ border-bottom:0; }
 
-@media (max-width:560px){
-  .honors li,
-  .timeline li{ grid-template-columns:1fr; gap:4px; }
-  .honors__year,
-  .timeline__when{ padding-top:0; }
+  .about{ grid-template-columns:1fr; gap:22px; }
+  .portrait{ order:-1; width:150px; height:150px; justify-self:start; }
+
+  .dirs{ grid-template-columns:1fr; gap:18px; }
+  .rows li{ grid-template-columns:1fr; gap:2px; }
+  .rows__when{ padding-top:0; }
+  .res-cols{ grid-template-columns:1fr; }
 }
 
 @media (prefers-reduced-motion:reduce){
   html{ scroll-behavior:auto; }
-  .reveal{ opacity:1; transform:none; transition:none; }
-  .panel{ animation:none; }
   *{ transition-duration:.01ms !important; }
 }
 
 @media print{
-  .nav, .hero__actions, .foot__top, .reveal{ display:revert; }
-  .nav, .hero__portrait, .foot{ display:none; }
-  .reveal{ opacity:1; transform:none; }
+  .nav, .foot, .more, .skip-link{ display:none; }
   .panel[hidden]{ display:block !important; }
-  body{ background:#fff; font-size:11pt; }
-  .section{ padding-block:18px; break-inside:avoid; }
+  .pub.is-hidden{ display:block; }
+  body{ font-size:10.5pt; }
+  main{ padding-block:0; }
+  a{ color:inherit; }
 }
